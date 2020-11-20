@@ -116,11 +116,3 @@ void Voyager::DrawLine(cs225::PNG &png, int src_x, int src_y, int dest_x, int de
     //TODO: Write your code here
 
 }
-
-std::vector<std::string> Voyager::getApt() {
-    std::vector<std::string> res;
-    for (auto apt : airport_dict) {
-        res.push_back(apt.second->name);
-    }
-    return res;
-}
