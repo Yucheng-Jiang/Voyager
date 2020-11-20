@@ -9,13 +9,6 @@ class Voyager {
 
     //TODO: Modify controlled access if necessary
     public:
-        Voyager();
-        cs225::PNG* DrawGraph(short** matrix);
-        int* centrality(short** matrix);
-        ~Voyager();
-        std::vector<std::string> getApt();
-        
-    private:
         struct Airport {
             // constructor
             Airport(string setName, string setIATA, double setLat, double setLong, int setIndex) {
@@ -56,7 +49,17 @@ class Voyager {
             double lati_;
             double longi_;
         };
+    public:
+        Voyager();
+        cs225::PNG* DrawGraph(short** matrix);
+        int* centrality(short** matrix);
+        ~Voyager();
+        std::map<int, Airport*> getAptDict();
         
+    private:
+        
+        // Enum to represent relative route direction
+        enum Dir { NORTH, EAST, SOUTH, WEST};   // NORTH, SOUTH are unlikely
         
         std::map<int, Airport*> airport_dict;   // Airport dictionary
         short** matrix_adj;                     // Adjacency matrix
@@ -66,4 +69,10 @@ class Voyager {
         void ReadAirport(std::string filePath);
         void ReadRoute(std::string filePath);
         void DrawLine(cs225::PNG &png, int src_x, int src_y, int dest_x, int dest_y);
+        /**
+         * Helper func for draw line, calculates relative dir and distance(pixel).
+         * @param all coordinate of source airport and destination airport
+         * @return a pair of direction and pixel distance
+         **/
+        std::pair<Dir, int> GetDirDist(int src_x, int src_y, int dest_x, int dest_y);
 };

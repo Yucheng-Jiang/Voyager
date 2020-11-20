@@ -48,12 +48,6 @@ $(OBJS_DIR):
 	@mkdir -p $(OBJS_DIR)/cs225/catch
 	@mkdir -p $(OBJS_DIR)/cs225/lodepng
 	@mkdir -p $(OBJS_DIR)/tests
-# mp_traversal specific
-	@mkdir -p $(OBJS_DIR)/imageTraversal
-	@mkdir -p $(OBJS_DIR)/colorPicker
-# mp_mosaic specific
-	@mkdir -p $(OBJS_DIR)/cs225/ColorSpace
-	@mkdir -p $(OBJS_DIR)/util
 
 # Rules for compiling source code.
 # - Every object file is required by $(EXE)

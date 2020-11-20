@@ -1,6 +1,6 @@
 EXE = voyager 
 TEST = test
-EXE_OBJ = voyager.o
+EXE_OBJ = main.o
 OBJS = voyager.o main.o
 
 # CXX = clang++
@@ -35,8 +35,8 @@ include cs225/make/cs225.mk
 # $(EXENAME): output_msg $(OBJS)
 # 	$(LD) $(OBJS) $(LDFLAGS) -o $(EXENAME)
 
-# voyager.o: main.cpp voyager.cpp
-# 	$(CXX) $(CXXFLAGS) main.cpp voyager.cpp
+voyager.o: main.cpp voyager.cpp
+	$(CXX) $(CXXFLAGS) main.cpp voyager.cpp
 
 # test: output_msg catch/catchmain.cpp tests/tests.cpp voyager.cpp
 # 	$(LD) catch/catchmain.cpp tests/tests.cpp voyager.cpp $(LDFLAGS) -o test

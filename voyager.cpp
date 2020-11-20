@@ -4,6 +4,7 @@
 #include <map>
 #include <fstream>
 #include <vector>
+#include <cmath>
 
 #include "cs225/HSLAPixel.h"
 #include "cs225/PNG.h"
@@ -115,4 +116,27 @@ void Voyager::DrawLine(cs225::PNG &png, int src_x, int src_y, int dest_x, int de
 
     //TODO: Write your code here
 
+}
+
+std::pair<Voyager::Dir, int> Voyager::GetDirDist(int src_x, int src_y, int dest_x, int dest_y) {
+    
+    int dist = (int)sqrt(pow(src_x - dest_y, 2) + pow(src_y - dest_y, 2));
+    if (!dist) std::cerr << "Airport coordinate parsing error \n" << "Same airport route appeared" << std::endl; 
+    std::pair<Voyager::Dir, int> res;
+    res.second = dist;
+    if (src_x == dest_x) {
+        if (src_y > dest_y) res.first = Voyager::Dir(SOUTH);
+        else res.first = Voyager::Dir(NORTH);
+        return res;
+    }
+    else {
+        if (src_x > dest_x) res.first = Voyager::Dir(WEST);
+        else res.first = Voyager::Dir(EAST);
+        return res;
+    }
+}
+
+//Getter for testing purposes
+std::map<int, Voyager::Airport*> Voyager::getAptDict() {
+    return airport_dict;
 }
