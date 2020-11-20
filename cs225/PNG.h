@@ -80,11 +80,21 @@ namespace cs225 {
       * Pixel access operator. Gets a reference to the pixel at the given
       * coordinates in the image. (0,0) is the upper left corner.
       * This reference allows the image to be changed.
-      * @param x X-coordinate for the pixel pointer to be grabbed from.
-      * @param y Y-coordinate for the pixel pointer to be grabbed from.
+      * @param x X-coordinate for the pixel reference to be grabbed from.
+      * @param y Y-coordinate for the pixel reference to be grabbed from.
       * @return A reference to the pixel at the given coordinates.
       */
-    HSLAPixel & getPixel(unsigned int x, unsigned int y) const;
+    HSLAPixel & getPixel(unsigned int x, unsigned int y);
+
+    /**
+      * Pixel access operator. Gets a const reference to the pixel at the
+      * given coordinates in the image. (0,0) is the upper left corner.
+      * This const reference DOES NOT allow the image to be changed.
+      * @param x X-coordinate for the const pixel reference to be grabbed from.
+      * @param y Y-coordinate for the const pixel reference to be grabbed from.
+      * @return A const reference to the pixel at the given coordinates.
+      */
+    const HSLAPixel & getPixel(unsigned int x, unsigned int y) const;
 
     /**
       * Gets the width of this image.
@@ -113,9 +123,16 @@ namespace cs225 {
     HSLAPixel *imageData_;          /*< Array of pixels */
 
     /**
-     * Copeies the contents of `other` to self
+     * Copies the contents of `other` to self
      */
-     void _copy(PNG const & other);
+    void _copy(PNG const & other);
+
+    /**
+     * Common function for powering the following signature stubs.
+     * HSLAPixel & getPixel(unsigned int x, unsigned int y);
+     * const HSLAPixel & getPixel(unsigned int x, unsigned int y) const;
+     */
+    HSLAPixel & _getPixelHelper(unsigned int x, unsigned int y) const;
   };
 
   std::ostream & operator<<(std::ostream & out, PNG const & pixel);

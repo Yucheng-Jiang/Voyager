@@ -18,7 +18,8 @@ class Voyager {
     private:
         struct Airport {
             // constructor
-            Airport(string setName, string setIATA, double setLat, double setLong) {
+            Airport(string setName, string setIATA, double setLat, double setLong, int setIndex) {
+                index = setIndex;
                 lati_ = setLat;
                 longi_ = setLong;
                 IATA = setIATA;
@@ -26,6 +27,7 @@ class Voyager {
             }
             // copy helper
             void _copy(Airport const & other) {
+                index = other.index;
                 IATA = other.IATA;
                 name = other.name;
                 lati_ = other.lati_;
@@ -42,9 +44,13 @@ class Voyager {
             }
             // not equal operator
              bool operator!= (Airport const & other) const {
-                return IATA == other.IATA && name == other.name && lati_ == other.lati_ && longi_ == other.longi_;
+                return IATA == other.IATA 
+                    && name == other.name 
+                    && lati_ == other.lati_ 
+                    && longi_ == other.longi_ 
+                    && index == other.index;
             }
-            //len = 3
+            int index;
             string IATA;
             string name;
             double lati_;

@@ -12,7 +12,7 @@ namespace cs225 {
     double a;  // [0, 1]
   } hslaColor;
 
-  static hslaColor rgb2hsl(rgbaColor rgb) {
+  static hslaColor rgb2hsl(const rgbaColor & rgb) {
     hslaColor hsl;
     double r, g, b, min, max, chroma;
 
@@ -64,7 +64,7 @@ namespace cs225 {
     return hsl;
   };
 
-  static rgbaColor hsl2rgb(hslaColor hsl) {
+  static rgbaColor hsl2rgb(const hslaColor & hsl) {
     rgbaColor rgb;
 
     // HSV Calculations -- formulas sourced from https://en.wikipedia.org/wiki/HSL_and_HSV

@@ -9,8 +9,8 @@
 #include "cs225/PNG.h"
 
 Voyager::Voyager() {
-    // ReadAirport("dataset/airports.dat");
-    // ReadRoute("dataset/routes.dat");
+    ReadAirport("dataset/airports.dat");
+    ReadRoute("dataset/routes.dat");
 }
 
 Voyager::~Voyager() {
@@ -35,20 +35,29 @@ void Voyager::ReadAirport(std::string filePath) {
     // data format: id, name, IATA, lat, long
     if (infile.is_open()) {
         while (getline(infile, line)) {
-            count++;
             std::vector<string> vec;
             string str = "";
+            bool isquote = false;
+            // if there's a quote, ignore ','
+            // otherwise separate string based on ','
             for (auto& c : line) {
-                if (c != ',') {
-                    str += c;
-                } else {
-                    vec.push_back(str);
-                    str = "";
+                switch (c) {
+                    case '\"':
+                        isquote = !isquote;
+                        break;
+                    case ',':
+                        if (!isquote) {
+                            vec.push_back(str);
+                            str = "";
+                        }
+                        break;
+                    default:
+                        str += c;
                 }
             }
-            Airport *apt = (new Airport(vec[1], vec[2], std::stod(vec[3]), std::stod(vec[4])));
-            //airport_dict.insert(std::pair(std::stoi(vec[0]), apt));
-            //airport_dict[std::stoi(vec[0])] = apt;
+            vec.push_back(str);
+            airport_dict[std::stoi(vec[0])] = new Airport(vec[1], vec[2], std::stod(vec[3]), std::stod(vec[4]), count);
+            count++;
         }
     }
     // initialize adjecent matrix
@@ -59,29 +68,34 @@ void Voyager::ReadAirport(std::string filePath) {
             matrix_adj[i][j] = 0;
         }
     }
-
 }
+
 void Voyager::ReadRoute(std::string filePath) {
 
     std::ifstream infile(filePath);
-    string str;
+    string line;
     // data format: id, name, IATA, lat, long
     if (infile.is_open()) {
-        while (getline(infile, str)) {
+        while (getline(infile, line)) {
             std::vector<string> vec;
             string str = "";
-            for (auto& c : str) {
-                if (c != ',') {
-                    str += c;
-                } else {
-                    vec.push_back(str);
-                    str = "";
+            for (auto& c : line) {
+                switch (c) {
+                    case ',':
+                        vec.push_back(str);
+                        str = "";
+                        break;
+                    default:
+                        str += c;
                 }
             }
-            matrix_adj[std::stoi(vec[0])][std::stoi(vec[1])]++;
+            vec.push_back(str);
+            // if airport ID is not found in dictionary, discard this route
+            if (!airport_dict.count(std::stoi(vec[0])) || !airport_dict.count(std::stoi(vec[1]))) continue;
+            // update adjacency matrix
+            matrix_adj[airport_dict.at(std::stoi(vec[0]))->index][airport_dict.at(std::stoi(vec[1]))->index]++;
         }
-    }   
-
+    }  
 }
 
 cs225::PNG* Voyager::DrawGraph(short** matrix) {
@@ -106,7 +120,7 @@ void Voyager::DrawLine(cs225::PNG &png, int src_x, int src_y, int dest_x, int de
 std::vector<std::string> Voyager::getApt() {
     std::vector<std::string> res;
     for (auto apt : airport_dict) {
-        res.push_back(apt.second->IATA);
+        res.push_back(apt.second->name);
     }
     return res;
 }

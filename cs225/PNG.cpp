@@ -68,12 +68,21 @@ namespace cs225 {
     if (width_ != other.width_) { return false; }
     if (height_ != other.height_) { return false; }
 
+    hslaColor hslaSpace1;
+    hslaColor hslaSpace2;
+    rgbaColor rgbaSpace1;
+    rgbaColor rgbaSpace2;
     for (unsigned i = 0; i < width_ * height_; i++) {
       HSLAPixel & p1 = imageData_[i];
       HSLAPixel & p2 = other.imageData_[i];
-      // NOTE: This intentionally differs from the standard libcs225 PNG class
-      // since students don't override operator!= for the HSLAPixel class
-      if (p1.h != p2.h || p1.s != p2.s || p1.l != p2.l || p1.a != p2.a) { return false; }
+      hslaSpace1 = {p1.h, p1.s, p1.l, p1.a};
+      hslaSpace2 = {p2.h, p2.s, p2.l, p2.a};
+      rgbaSpace1 = hsl2rgb(hslaSpace1);
+      rgbaSpace2 = hsl2rgb(hslaSpace2);
+      if (rgbaSpace1.r != rgbaSpace2.r
+          || rgbaSpace1.g != rgbaSpace2.g
+          || rgbaSpace1.b != rgbaSpace2.b
+          || rgbaSpace1.a != rgbaSpace2.a) { return false; }
     }
 
     return true;
@@ -83,7 +92,7 @@ namespace cs225 {
     return !(*this == other);
   }
 
-  HSLAPixel & PNG::getPixel(unsigned int x, unsigned int y) const {
+  HSLAPixel & PNG::_getPixelHelper(unsigned int x, unsigned int y) const {
     if (width_ == 0 || height_ == 0) {
       cerr << "ERROR: Call to cs225::PNG::getPixel() made on an image with no pixels." << endl;
       assert(width_ > 0);
@@ -107,6 +116,10 @@ namespace cs225 {
     unsigned index = x + (y * width_);
     return imageData_[index];
   }
+
+  HSLAPixel & PNG::getPixel(unsigned int x, unsigned int y) { return _getPixelHelper(x,y); }
+
+  const HSLAPixel & PNG::getPixel(unsigned int x, unsigned int y) const { return _getPixelHelper(x,y); }
 
   bool PNG::readFromFile(string const & fileName) {
     vector<unsigned char> byteData;
@@ -204,7 +217,7 @@ namespace cs225 {
 
     for (unsigned x = 0; x < png.width(); x++) {
       for (unsigned y = 0; y < png.height(); y++) {
-        HSLAPixel &pixel = png.getPixel(x, y);
+        const HSLAPixel &pixel = png.getPixel(x, y);
         hash ^= hashFunction(pixel.h);
         hash ^= hashFunction(pixel.s);
         hash ^= hashFunction(pixel.l);
