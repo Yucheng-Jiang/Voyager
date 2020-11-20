@@ -3,6 +3,7 @@
 #include "cs225/PNG.h"
 #include "cs225/HSLAPixel.h"
 #include <map>
+#include <vector>
 
 class Voyager {
 
@@ -12,6 +13,8 @@ class Voyager {
         cs225::PNG* DrawGraph(short** matrix);
         int* centrality(short** matrix);
         ~Voyager();
+        std::vector<std::string> getApt();
+        
     private:
         struct Airport {
             // constructor
@@ -41,6 +44,7 @@ class Voyager {
              bool operator!= (Airport const & other) const {
                 return IATA == other.IATA && name == other.name && lati_ == other.lati_ && longi_ == other.longi_;
             }
+            //len = 3
             string IATA;
             string name;
             double lati_;

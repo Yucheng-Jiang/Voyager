@@ -1,4 +1,4 @@
-EXE = voyager
+EXE = voyager 
 TEST = test
 EXE_OBJ = voyager.o
 OBJS = voyager.o main.o

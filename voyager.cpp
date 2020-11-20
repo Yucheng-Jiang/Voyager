@@ -9,8 +9,8 @@
 #include "cs225/PNG.h"
 
 Voyager::Voyager() {
-    ReadAirport("dataset/airports.dat");
-    ReadRoute("dataset/routes.dat");
+    // ReadAirport("dataset/airports.dat");
+    // ReadRoute("dataset/routes.dat");
 }
 
 Voyager::~Voyager() {
@@ -46,7 +46,9 @@ void Voyager::ReadAirport(std::string filePath) {
                     str = "";
                 }
             }
-            airport_dict[std::stoi(vec[0])] = new Airport(vec[1], vec[2], std::stod(vec[3]), std::stod(vec[4]));;
+            Airport *apt = (new Airport(vec[1], vec[2], std::stod(vec[3]), std::stod(vec[4])));
+            //airport_dict.insert(std::pair(std::stoi(vec[0]), apt));
+            //airport_dict[std::stoi(vec[0])] = apt;
         }
     }
     // initialize adjecent matrix
@@ -99,4 +101,12 @@ void Voyager::DrawLine(cs225::PNG &png, int src_x, int src_y, int dest_x, int de
 
     //TODO: Write your code here
 
+}
+
+std::vector<std::string> Voyager::getApt() {
+    std::vector<std::string> res;
+    for (auto apt : airport_dict) {
+        res.push_back(apt.second->IATA);
+    }
+    return res;
 }
