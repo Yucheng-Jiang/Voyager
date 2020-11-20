@@ -24,9 +24,9 @@ TEST_CASE("Test Init", "[apt-dict init][route init][init]") {
 
     //REQUIRED
     Voyager::Airport* GKA = new Voyager::Airport("Goroka Airport", "GKA", -6.081689835, 145.3919983, 1);
-    Voyager::Airport* HGH = new Voyager::Airport("Hangzhou Xiaoshan International Airport", "HGH", 30.22949982, 120.4339981, 3386);
-    Voyager::Airport* CTU = new Voyager::Airport("Chengdu Shuangliu International Airport", "CTU", 30.57850075, 103.9469986, 3395);
-    Voyager::Airport* AB = new Voyager::Airport("Melitopol Air Base", "\N", 46.880001, 35.305, 14110);
+    Voyager::Airport* HGH = new Voyager::Airport("Hangzhou Xiaoshan International Airport", "HGH", 30.22949982, 120.4339981, 3191);
+    Voyager::Airport* CTU = new Voyager::Airport("Chengdu Shuangliu International Airport", "CTU", 30.57850075, 103.9469986, 3200);
+    Voyager::Airport* AB = new Voyager::Airport("Melitopol Air Base", "\\N", 46.880001, 35.305, 7698);
 
     //ACTUAL
     Voyager::Airport *A_GKA;
