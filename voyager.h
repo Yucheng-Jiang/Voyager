@@ -4,29 +4,52 @@
 #include "cs225/HSLAPixel.h"
 #include <map>
 
-class voyager {
+class Voyager {
 
     //TODO: Modify controlled access if necessary
     public:
-        void init();
-        cs225::PNG* DrawGraph();
+        Voyager();
+        cs225::PNG* DrawGraph(short** matrix);
         int* centrality(short** matrix);
+        ~Voyager();
     private:
-        // Data Structure
-        struct airport {
-            airport(int index, double lati, double longi) {
-                idx = index;
-                lat = lati;
-                lon = longi;
+        struct Airport {
+            // constructor
+            Airport(string setName, string setIATA, double setLat, double setLong) {
+                lati_ = setLat;
+                longi_ = setLong;
+                IATA = setIATA;
+                name = setName;
             }
-            int idx;
-            double lat;
-            double lon;
+            // copy helper
+            void _copy(Airport const & other) {
+                IATA = other.IATA;
+                name = other.name;
+                lati_ = other.lati_;
+                longi_ = other.longi_;
+            }
+            // copy constructor
+            Airport(Airport const & other) {
+                _copy(other);
+            }
+            // copy assignment
+            Airport const & operator=(Airport const & other) {
+                if (this != &other) { _copy(other); }
+                return *this;
+            }
+            // not equal operator
+             bool operator!= (Airport const & other) const {
+                return IATA == other.IATA && name == other.name && lati_ == other.lati_ && longi_ == other.longi_;
+            }
+            string IATA;
+            string name;
+            double lati_;
+            double longi_;
         };
         
         
-        std::map<std::string, airport> apt;     // Airport dictionary
-        short** matrix_adj;           // Adjacency matrix
+        std::map<int, Airport*> airport_dict;   // Airport dictionary
+        short** matrix_adj;                     // Adjacency matrix
 
         // Helper func
         // TODO: Add Helper here
