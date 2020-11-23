@@ -6,6 +6,7 @@
 #include <vector>
 #include <cmath>
 #include <queue>
+#include <algorithm>
 
 #include "cs225/HSLAPixel.h"
 #include "cs225/PNG.h"
@@ -13,6 +14,11 @@
 Voyager::Voyager() {
     ReadAirport("dataset/airports.dat");
     ReadRoute("dataset/routes.dat");
+}
+
+Voyager::Voyager(std::string AptPath, std::string RoutePath) {
+    ReadAirport(AptPath);
+    ReadRoute(RoutePath);
 }
 
 Voyager::~Voyager() {

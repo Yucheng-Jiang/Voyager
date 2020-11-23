@@ -89,9 +89,18 @@ class Voyager {
 
     public:
         /**
-         * constructor initialize airport dictionary and adjacency matrix.
+         * Default constructor initialize airport dictionary and adjacency matrix.
+         * Using default database.
          */ 
         Voyager();
+
+        /**
+         * Customized constructor.
+         * Using user specified database.
+         * @param AptPath relative path to airport database
+         * @param RoutePath relative path to route database
+         */
+        Voyager(std::string AptPath, std::string RoutePath);
 
         /**
          * draw flight routes onto png
