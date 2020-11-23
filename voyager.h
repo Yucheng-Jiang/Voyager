@@ -98,7 +98,7 @@ class Voyager {
          * @param map adjacency matrix. 
          * @return pointer of the updated PNG
          */ 
-        cs225::PNG* DrawGraph(std::map<int, std::unordered_set<int>*>& map, cs225::PNG& png);
+        cs225::PNG* Voyager::DrawGraph(std::map<int, Airport*>& airport_dict, double* centrality);
 
         /**
          * calculate betweeness centriality of each airport.
@@ -123,7 +123,8 @@ class Voyager {
         std::map<int, Airport*> airport_dict;   
         // adjacency map. key is the id of airport, value is unordered_set of all neighbor aiports
         std::map<int, std::unordered_set<int>*> map_adj; 
-
+        int width;
+        int height;
     private:
         /**
          * read airport info from dataset to airport_dict
@@ -144,11 +145,6 @@ class Voyager {
         int convertToX(cs225::PNG png, double lati, double longi);
         int convertToY(cs225::PNG png, double lati, double longi);
 
-        //cs225::PNG* addHeatPoint(int x, int y);
-
-        /**
-         * 
-         *
 
         /**
          * get minimum steps of each airport from departure airport. 
