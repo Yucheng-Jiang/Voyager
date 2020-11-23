@@ -174,19 +174,25 @@ double* Voyager::centrality(std::map<int, std::unordered_set<int>*>& map) {
 int* Voyager::GetStepCount(std::map<int, std::unordered_set<int>*>& map, int departureIndex, int destIndex) {
    
     int SIZE = map.size();
+    // initialzie all steps to -1
     int* stepCount = new int[SIZE];
     std::fill_n(stepCount, SIZE, -1);
+    // set departure step = 0
     stepCount[departureIndex] = 0;
     std::queue<int> queue;
     queue.push(departureIndex);
     bool isfound = false;
     // bfs mark steps from firstVertex to secondVertex
     while (!queue.empty()) {
+        // if reach destination, break bfs
         if (isfound) break;
         // get first element in queue
         int index = queue.front();
         queue.pop();
+        // new step count
         int step = stepCount[index] + 1;
+        // visit all neighbor node, if stepcount is not initialized or new step is smaller
+        // update step count
         std::unordered_set<int>* set = map[index];
         for (std::unordered_set<int>::iterator it = set->begin(); it != set->end(); it++) {
             if (*it == destIndex) isfound = true;
@@ -211,9 +217,12 @@ int* Voyager::GetPathCount(std::map<int, std::unordered_set<int>*>& map, int* st
     while (!queue.empty()) {
         int index = queue.front();
         queue.pop();
+        // next required step count
         int step = stepCount[index] - 1;
+        // for all neighbors, find those steps matches with required step count
         std::unordered_set<int>* set = map[index];
         for (std::unordered_set<int>::iterator it = set->begin(); it != set->end(); it++) {
+            // copy all parent nodes from parents to self
             if (stepCount[*it] == step) {
                 queue.push(*it);
                 if (parent.count(*it) == 0) {
@@ -234,7 +243,7 @@ int* Voyager::GetPathCount(std::map<int, std::unordered_set<int>*>& map, int* st
             }
         }
     }
-
+    // count all shortest path
     for (auto& vec : parent[departureIndex]) {
         for (auto& i : vec) {
             pathCount[i]++;

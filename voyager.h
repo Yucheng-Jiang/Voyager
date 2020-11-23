@@ -101,7 +101,7 @@ class Voyager {
          * @param outputFile outputFile name
          */ 
 
-        void Voyager::DrawGraph(std::map<int, Airport*>& airport_dict, double* centrality, std::string inputFile, std::string outputFile, int topN);
+        void DrawGraph(std::map<int, Airport*>& airport_dict, double* centrality, std::string inputFile, std::string outputFile, int topN);
 
         /**
          * calculate betweeness centriality of each airport.

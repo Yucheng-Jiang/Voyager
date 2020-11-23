@@ -106,13 +106,13 @@ TEST_CASE("Test Centrality", "[centrality][elementary]") {
     expected[id++] = 0;
     expected[id++] = 13;
     expected[id++] = 0;
-    expected[id++] = 19.33;
+    expected[id++] = 19 + 1.0 / 3;
     expected[id++] = 47.5;      //highest ID = 5;
-    expected[id++] = 8.33;
-    expected[id++] = 10.33;
+    expected[id++] = 8 + 1.0 / 3;
+    expected[id++] = 10 + 1.0 / 3;
     expected[id++] = 8.5;
-    expected[id++] = 23.17;
-    expected[id++] = 9.33;
+    expected[id++] = 23 + 1.0 / 6;
+    expected[id++] = 9 + 1.0 / 3;
     expected[id++] = 5;
     expected[id++] = 0;
     expected[id++] = 9.5;
@@ -124,7 +124,7 @@ TEST_CASE("Test Centrality", "[centrality][elementary]") {
     // Check elements
     bool same_arr = true;
     for (int i = 0; i < id; i++) {
-        if (expected[i] != res[i]) {
+        if ((int)expected[i] * 10000 != (int)res[i] * 10000) {
             same_arr = false;
             break;
         }
