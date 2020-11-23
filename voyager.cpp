@@ -108,8 +108,6 @@ void Voyager::DrawGraph(std::map<int, Airport*>& airport_dict, double* centralit
         tempArray.push_back(centrality[i]);
     }
     std::sort(tempArray.begin(), tempArray.end(), std::greater<double>());
-    double max = tempArray[0];
-    double min = tempArray[airport_dict.size()];
     double topNAirport = tempArray[topN];
     int index = 0;
     for (auto& c : airport_dict) {
@@ -118,23 +116,23 @@ void Voyager::DrawGraph(std::map<int, Airport*>& airport_dict, double* centralit
         double longi = (airport_dict.find(airportID)->second)->longi_;
         int x = convertToX(inputimage, lati, longi);
         int y = convertToY(inputimage, lati, longi);
+        int length = 2;
         if (cArray[index] >= topNAirport) {
-            int length = 2;
-            for (int i = x - 2; i < x + 2; x++) {
-                for (int j = y - 2; j < y + 2; y++) {
-                    inputimage.getPixel(i, j).h = 0;
-                    inputimage.getPixel(i, j).s = 1;
-                    inputimage.getPixel(i, j).l = 0.5;
-                    inputimage.getPixel(i, j).a = 1;
+            for (int i = x - length; i < x + length; x++) {
+                for (int j = y - length; j < y + length; y++) {
+                    outputimage.getPixel(i, j).h = 0;
+                    outputimage.getPixel(i, j).s = 1;
+                    outputimage.getPixel(i, j).l = 0.5;
+                    outputimage.getPixel(i, j).a = 1;
                 }
             }
         } else {
-            for (int i = x - 2; i < x + 2; x++) {
-                for (int j = y - 2; j < y + 2; y++) {
-                    inputimage.getPixel(i, j).h = 255;
-                    inputimage.getPixel(i, j).s = 1;
-                    inputimage.getPixel(i, j).l = 0.5;
-                    inputimage.getPixel(i, j).a = 1;
+            for (int i = x - length; i < x + length; x++) {
+                for (int j = y - length; j < y + length; y++) {
+                    outputimage.getPixel(i, j).h = 255;
+                    outputimage.getPixel(i, j).s = 1;
+                    outputimage.getPixel(i, j).l = 0.5;
+                    outputimage.getPixel(i, j).a = 1;
                 }
             }
         }
