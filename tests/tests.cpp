@@ -77,51 +77,96 @@ TEST_CASE("Test Init", "[apt-dict init][init]") {
     delete voyager; voyager = nullptr;
 }
 
-// src graph: ../tests/CentralityTest1 Elem.png
+//src graph: ../tests/CentralityTest1 Elem.png
 TEST_CASE("Test Centrality", "[centrality][elementary]") {
 
     Voyager *voyager = new Voyager();
     //init
     std::map<int, std::unordered_set<int>*> adj_matrix;
     int id = 0;
-    adj_matrix.insert(std::pair(id++, new std::unordered_set<int>({2})));
-    adj_matrix.insert(std::pair(id++, new std::unordered_set<int>({5})));
-    adj_matrix.insert(std::pair(id++, new std::unordered_set<int>({0, 5})));
-    adj_matrix.insert(std::pair(id++, new std::unordered_set<int>({4})));
-    adj_matrix.insert(std::pair(id++, new std::unordered_set<int>({3, 5, 9})));
-    adj_matrix.insert(std::pair(id++, new std::unordered_set<int>({1, 2, 4, 6, 7, 8})));
-    adj_matrix.insert(std::pair(id++, new std::unordered_set<int>({5, 7, 9})));
-    adj_matrix.insert(std::pair(id++, new std::unordered_set<int>({5, 6, 10})));
-    adj_matrix.insert(std::pair(id++, new std::unordered_set<int>({5, 11})));
-    adj_matrix.insert(std::pair(id++, new std::unordered_set<int>({4, 6, 12, 13})));
-    adj_matrix.insert(std::pair(id++, new std::unordered_set<int>({7, 11, 13, 14})));
-    adj_matrix.insert(std::pair(id++, new std::unordered_set<int>({8, 10, 14})));
-    adj_matrix.insert(std::pair(id++, new std::unordered_set<int>({9})));
-    adj_matrix.insert(std::pair(id++, new std::unordered_set<int>({9, 10, 14})));
-    adj_matrix.insert(std::pair(id++, new std::unordered_set<int>({10, 11, 13})));
-    id = 0;
+    adj_matrix.insert(std::make_pair(id++, new std::unordered_set<int>({2})));
+    adj_matrix.insert(std::make_pair(id++, new std::unordered_set<int>({5})));
+    adj_matrix.insert(std::make_pair(id++, new std::unordered_set<int>({0, 5})));
+    adj_matrix.insert(std::make_pair(id++, new std::unordered_set<int>({4})));
+    adj_matrix.insert(std::make_pair(id++, new std::unordered_set<int>({3, 5, 9})));
+    adj_matrix.insert(std::make_pair(id++, new std::unordered_set<int>({1, 2, 4, 6, 7, 8})));
+    adj_matrix.insert(std::make_pair(id++, new std::unordered_set<int>({5, 7, 9})));
+    adj_matrix.insert(std::make_pair(id++, new std::unordered_set<int>({5, 6, 10})));
+    adj_matrix.insert(std::make_pair(id++, new std::unordered_set<int>({5, 11})));
+    adj_matrix.insert(std::make_pair(id++, new std::unordered_set<int>({4, 6, 12, 13})));
+    adj_matrix.insert(std::make_pair(id++, new std::unordered_set<int>({7, 11, 13, 14})));
+    adj_matrix.insert(std::make_pair(id++, new std::unordered_set<int>({8, 10, 14})));
+    adj_matrix.insert(std::make_pair(id++, new std::unordered_set<int>({9})));
+    adj_matrix.insert(std::make_pair(id++, new std::unordered_set<int>({9, 10, 14})));
+    adj_matrix.insert(std::make_pair(id++, new std::unordered_set<int>({10, 11, 13})));
     // Not normalized result
     double *expected = new double[id];
+    id = 0;
     expected[id++] = 0;
     expected[id++] = 0;
     expected[id++] = 13;
     expected[id++] = 0;
-    expected[id++] = 19.33;
+    expected[id++] = 19 + 1.0 / 3;
     expected[id++] = 47.5;      //highest ID = 5;
-    expected[id++] = 8.33;
-    expected[id++] = 10.33;
+    expected[id++] = 8 + 1.0 / 3;
+    expected[id++] = 10 + 1.0 / 3;
     expected[id++] = 8.5;
-    expected[id++] = 23.17;
-    expected[id++] = 9.33;
+    expected[id++] = 23 + 1.0 / 6;
+    expected[id++] = 9 + 1.0 / 3;
     expected[id++] = 5;
     expected[id++] = 0;
     expected[id++] = 9.5;
     expected[id++] = 2;
+
     double *res = voyager->centrality(adj_matrix);
-    
     // Check result size
     REQUIRE(sizeof(expected) == sizeof(res));
+    // Check elements
+    bool same_arr = true;
+    for (int i = 0; i < id; i++) {
+        if ((int)expected[i] * 10000 != (int)res[i] * 10000) {
+            same_arr = false;
+            break;
+        }
+    }
+    REQUIRE(same_arr);
+    // delete memory
+    delete[] res;
+    delete voyager;
+    for (auto it : adj_matrix) {
+        delete it.second;
+    }
+}
 
+//src graph: ../tests/centrality_test_basic.jpg
+TEST_CASE("Test Centrality basic", "[centrality][basic]") {
+
+    Voyager *voyager = new Voyager();
+    //init
+    std::map<int, std::unordered_set<int>*> adj_matrix;
+    int id = 0;
+    adj_matrix.insert(std::make_pair(id++, new std::unordered_set<int>({1, 2})));
+    adj_matrix.insert(std::make_pair(id++, new std::unordered_set<int>({0, 2, 3})));
+    adj_matrix.insert(std::make_pair(id++, new std::unordered_set<int>({0, 1, 3, 4})));
+    adj_matrix.insert(std::make_pair(id++, new std::unordered_set<int>({1, 2, 5, 6})));
+    adj_matrix.insert(std::make_pair(id++, new std::unordered_set<int>({2})));
+    adj_matrix.insert(std::make_pair(id++, new std::unordered_set<int>({3})));
+    adj_matrix.insert(std::make_pair(id++, new std::unordered_set<int>({3})));
+
+    // Not normalized result
+    double *expected = new double[id];
+    id = 0;
+    expected[id++] = 0;
+    expected[id++] = 1.5;
+    expected[id++] = 6.5;
+    expected[id++] = 9;
+    expected[id++] = 0;
+    expected[id++] = 0; 
+    expected[id++] = 0;
+
+    double *res = voyager->centrality(adj_matrix);
+    // Check result size
+    REQUIRE(sizeof(expected) == sizeof(res));
     // Check elements
     bool same_arr = true;
     for (int i = 0; i < id; i++) {
@@ -131,6 +176,10 @@ TEST_CASE("Test Centrality", "[centrality][elementary]") {
         }
     }
     REQUIRE(same_arr);
-
-
+    // delete memory
+    delete[] res;
+    delete voyager;
+    for (auto it : adj_matrix) {
+        delete it.second;
+    }
 }

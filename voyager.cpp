@@ -114,8 +114,6 @@ void Voyager::DrawGraph(std::map<int, Airport*>& airport_dict, double* centralit
         tempArray.push_back(centrality[i]);
     }
     std::sort(tempArray.begin(), tempArray.end(), std::greater<double>());
-    double max = tempArray[0];
-    double min = tempArray[airport_dict.size()];
     double topNAirport = tempArray[topN];
     int index = 0;
     for (auto& c : airport_dict) {
@@ -124,23 +122,23 @@ void Voyager::DrawGraph(std::map<int, Airport*>& airport_dict, double* centralit
         double longi = (airport_dict.find(airportID)->second)->longi_;
         int x = convertToX(inputimage, lati, longi);
         int y = convertToY(inputimage, lati, longi);
+        int length = 2;
         if (cArray[index] >= topNAirport) {
-            int length = 2;
-            for (int i = x - 2; i < x + 2; x++) {
-                for (int j = y - 2; j < y + 2; y++) {
-                    inputimage.getPixel(i, j).h = 0;
-                    inputimage.getPixel(i, j).s = 1;
-                    inputimage.getPixel(i, j).l = 0.5;
-                    inputimage.getPixel(i, j).a = 1;
+            for (int i = x - length; i < x + length; x++) {
+                for (int j = y - length; j < y + length; y++) {
+                    outputimage.getPixel(i, j).h = 0;
+                    outputimage.getPixel(i, j).s = 1;
+                    outputimage.getPixel(i, j).l = 0.5;
+                    outputimage.getPixel(i, j).a = 1;
                 }
             }
         } else {
-            for (int i = x - 2; i < x + 2; x++) {
-                for (int j = y - 2; j < y + 2; y++) {
-                    inputimage.getPixel(i, j).h = 255;
-                    inputimage.getPixel(i, j).s = 1;
-                    inputimage.getPixel(i, j).l = 0.5;
-                    inputimage.getPixel(i, j).a = 1;
+            for (int i = x - length; i < x + length; x++) {
+                for (int j = y - length; j < y + length; y++) {
+                    outputimage.getPixel(i, j).h = 255;
+                    outputimage.getPixel(i, j).s = 1;
+                    outputimage.getPixel(i, j).l = 0.5;
+                    outputimage.getPixel(i, j).a = 1;
                 }
             }
         }
@@ -150,9 +148,8 @@ void Voyager::DrawGraph(std::map<int, Airport*>& airport_dict, double* centralit
 }
 
 double* Voyager::centrality(std::map<int, std::unordered_set<int>*>& map) {
-
     int SIZE = map.size();
-    double* centrality = new double[SIZE];
+    double* centrality = new double[SIZE]{0};
     // iterate for each first and second vertex
     for (int firstVertex = 0; firstVertex < SIZE; firstVertex++) {
         for (int secondVertex = firstVertex + 1; secondVertex < SIZE; secondVertex++) {
@@ -165,65 +162,109 @@ double* Voyager::centrality(std::map<int, std::unordered_set<int>*>& map) {
             // update centrality
             int totalPath = pathCount[firstVertex];
             for (int i = 0; i < SIZE; i++) {
-                if (i == firstVertex || i == secondVertex) continue;
-                centrality[i] += pathCount[i] / totalPath;
+                if (i == firstVertex || i == secondVertex || totalPath == 0) continue;
+                centrality[i] += (double) pathCount[i] / totalPath;
             }
             // delete step count array
             delete[] stepCount;
             delete[] pathCount;
         }
     }
+    for (int i = 0; i < SIZE; i++) {
+        std::cout << centrality[i] << ", ";
+    }
+    std::cout << "\n";
     return centrality;
 }
 
-int* GetStepCount(std::map<int, std::unordered_set<int>*>& map, int departureIndex, int destIndex) {
-
+int* Voyager::GetStepCount(std::map<int, std::unordered_set<int>*>& map, int departureIndex, int destIndex) {
+   
     int SIZE = map.size();
+    // initialzie all steps to -1
     int* stepCount = new int[SIZE];
+    std::fill_n(stepCount, SIZE, -1);
+    // set departure step = 0
+    stepCount[departureIndex] = 0;
     std::queue<int> queue;
     queue.push(departureIndex);
     bool isfound = false;
     // bfs mark steps from firstVertex to secondVertex
-    while (!queue.empty() && !isfound) {
+    while (!queue.empty()) {
+        // if reach destination, break bfs
+        if (isfound) break;
         // get first element in queue
         int index = queue.front();
         queue.pop();
+        // new step count
         int step = stepCount[index] + 1;
+        // visit all neighbor node, if stepcount is not initialized or new step is smaller
+        // update step count
         std::unordered_set<int>* set = map[index];
-        for (int i = 0 ; i < set->size(); i++) {
-            if (i == destIndex) isfound = true;
-            if (stepCount[i] != 0 || stepCount[i] > step) {
-                stepCount[i] = step;
+        for (std::unordered_set<int>::iterator it = set->begin(); it != set->end(); it++) {
+            if (*it == destIndex) isfound = true;
+            if (*it != departureIndex && (stepCount[*it] == -1 || stepCount[*it] > step)) {
+                stepCount[*it] = step;
             }
-            queue.push(i);
+            queue.push(*it);
         }
     }
     return stepCount;
 }
 
-int* GetPathCount(std::map<int, std::unordered_set<int>*>& map, int* stepCount, int departureIndex, int destIndex) {
-
-    int* pathCount = new int[map.size()];
+int* Voyager::GetPathCount(std::map<int, std::unordered_set<int>*>& map, int* stepCount, int departureIndex, int destIndex) {
+    
+    int* pathCount = new int[map.size()]{0};
+    pathCount[destIndex] = 1;
+    std::map<int, std::vector<std::vector<int>>> parent;
+    parent[destIndex] = std::vector<std::vector<int>>{{destIndex}};
     std::queue<int> queue;
     queue.push(destIndex);
+    // find number of path
     while (!queue.empty()) {
         int index = queue.front();
         queue.pop();
+        // next required step count
         int step = stepCount[index] - 1;
-        pathCount[index]++;
+        // for all neighbors, find those steps matches with required step count
         std::unordered_set<int>* set = map[index];
-        int tempNodeCount = 0;
-        for (int i = 0; i < set->size(); i++) {
-            if (stepCount[i] == step)  queue.push(i);
+        for (std::unordered_set<int>::iterator it = set->begin(); it != set->end(); it++) {
+            // copy all parent nodes from parents to self
+            if (stepCount[*it] == step) {
+                queue.push(*it);
+                if (parent.count(*it) == 0) {
+                    std::vector<std::vector<int>> vec;
+                    for (int i = 0; i < (int) parent[index].size(); i++) {
+                        std::vector<int> temp = parent[index][i];
+                        temp.push_back(*it);
+                        vec.push_back(temp);
+                    }
+                    parent[*it] = vec;
+                } else {
+                    for (int i = 0; i < (int) parent[index].size(); i++) {
+                        std::vector<int> temp = parent[index][i];
+                        temp.push_back(*it);
+                        parent[*it].push_back(temp);
+                    }
+                }
+            }
         }
     }
+    // count all shortest path
+    for (auto& vec : parent[departureIndex]) {
+        for (auto& i : vec) {
+            pathCount[i]++;
+        }
+    }
+
     return pathCount;
 }
-int convertToX(cs225::PNG png, double lati, double longi) {
+
+int Voyager::convertToX(cs225::PNG& png, double lati, double longi) {
     int x = std::fmod((png.width() * (180 + longi)/ 360), (png.width() + (png.width() / 2)));
     return x;
 }
-int convertToY(cs225::PNG png, double lati, double longi) {
+
+int Voyager::convertToY(cs225::PNG& png, double lati, double longi) {
     double PI = 3.14159265359;
     double latRad = lati * PI / 180;
     double mapProjc = std::log(tan((PI / 4) + (latRad / 2)));

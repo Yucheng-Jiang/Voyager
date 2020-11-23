@@ -109,7 +109,8 @@ class Voyager {
          * @param inputFile inputFile name worldMap.png
          * @param outputFile outputFile name
          */ 
-        void Voyager::DrawGraph(std::map<int, Airport*>& airport_dict, double* centrality, std::string inputFile, std::string outputFile, int topN);
+
+        void DrawGraph(std::map<int, Airport*>& airport_dict, double* centrality, std::string inputFile, std::string outputFile, int topN);
 
         /**
          * calculate betweeness centriality of each airport.
@@ -157,8 +158,8 @@ class Voyager {
          * @return the X coordinate of the airport on the 2D map
          * @return the Y coordinate of the airport on the 2D map
          */
-        int convertToX(cs225::PNG png, double lati, double longi);
-        int convertToY(cs225::PNG png, double lati, double longi);
+        int convertToX(cs225::PNG& png, double lati, double longi);
+        int convertToY(cs225::PNG& png, double lati, double longi);
 
 
         /**
