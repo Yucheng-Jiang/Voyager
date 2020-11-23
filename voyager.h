@@ -4,6 +4,7 @@
 #include "cs225/HSLAPixel.h"
 #include <map>
 #include <vector>
+#include <unordered_set>
 
 class Voyager {
 
@@ -86,17 +87,17 @@ class Voyager {
 
         /**
          * draw flight routes onto png
-         * @param marix adjacency matrix. 
+         * @param map adjacency matrix. 
          * @return pointer of the updated PNG
          */ 
-        cs225::PNG* DrawGraph(short** matrix);
+        cs225::PNG* DrawGraph( std::map<int, std::unordered_set<int>*>& map);
 
         /**
          * calculate betweeness centriality of each airport.
-         * @param matrix adjacency matrix.
+         * @param map adjacency matrix.
          * @return array of int representing centrailiaty of each airport
          */ 
-        int* centrality(short** matrix);
+        double* centrality( std::map<int, std::unordered_set<int>*>& map);
 
         /**
          * destructor. delete aiport dictionary and adjacency matrix.
@@ -112,8 +113,8 @@ class Voyager {
     private:
         // Airport dictionary using airport unique id as key and airport pointer as value.
         std::map<int, Airport*> airport_dict;   
-        // adjacency matrix. matrix_adj[i][j] means number of airlines from airport i to j.
-        short** matrix_adj; 
+        // adjacency map. key is the id of airport, value is unordered_set of all neighbor aiports
+        std::map<int, std::unordered_set<int>*> map_adj; 
 
     private:
         /**
@@ -137,4 +138,25 @@ class Voyager {
          * @param dest_y y coordinate of ending pixel on png.
          */
         void DrawLine(cs225::PNG &png, int src_x, int src_y, int dest_x, int dest_y);
+
+
+        /**
+         * get minimum steps of each airport from departure airport. 
+         * if find destination airport immediately stop count.
+         * @param map adjacency map
+         * @param departureIndex id of departure index
+         * @param destIndex if od destination index
+         * @return array of int representing minimum steps from departure airport
+         */ 
+        int* getStepCount(std::map<int, std::unordered_set<int>*>& map, int departureIndex, int destIndex);
+
+        /**
+         * calculate number of each airport appears in all shortest path from departure to destination airport
+         * @param map adjacency map
+         * @param stepCount minumum steps of each airport from departure airport
+         * @param departureIndex id of departure airport
+         * @param destIndex id of destination airport.
+         * @return array of int representing number of each airport appears in all shortest path from departure to dest airport.
+         */ 
+        int* getPathCount(std::map<int, std::unordered_set<int>*>& map, int* stepCount, int departureIndex, int destIndex);
 };

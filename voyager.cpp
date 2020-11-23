@@ -5,6 +5,7 @@
 #include <fstream>
 #include <vector>
 #include <cmath>
+#include <queue>
 
 #include "cs225/HSLAPixel.h"
 #include "cs225/PNG.h"
@@ -20,11 +21,8 @@ Voyager::~Voyager() {
         delete (*it).second;
     }
     // delete adjacent matrix
-    if (matrix_adj) {
-        int rowCount = sizeof(matrix_adj) / sizeof(matrix_adj[0]);
-        for (int i = 0; i < rowCount; i++) {
-            delete[] matrix_adj[i];
-        }
+    for(auto it = map_adj.begin(); it != map_adj.end(); ++it) {
+        delete (*it).second;
     }
 }
 
@@ -61,14 +59,6 @@ void Voyager::ReadAirport(std::string filePath) {
             count++;
         }
     }
-    // initialize adjecent matrix
-    matrix_adj = new short*[count];
-    for (int i = 0; i < count; i++) {
-        matrix_adj[i] = new short[count];
-        for (int j = 0; j < count; j++) {
-            matrix_adj[i][j] = 0;
-        }
-    }
 }
 
 void Voyager::ReadRoute(std::string filePath) {
@@ -94,21 +84,92 @@ void Voyager::ReadRoute(std::string filePath) {
             // if airport ID is not found in dictionary, discard this route
             if (!airport_dict.count(std::stoi(vec[0])) || !airport_dict.count(std::stoi(vec[1]))) continue;
             // update adjacency matrix
-            matrix_adj[airport_dict.at(std::stoi(vec[0]))->index][airport_dict.at(std::stoi(vec[1]))->index]++;
+            if (!map_adj.count(airport_dict.at(std::stoi(vec[0]))->index)) {
+                std::unordered_set<int>* adj_vec = new std::unordered_set<int>;
+                adj_vec->insert(airport_dict.at(std::stoi(vec[1]))->index);
+                map_adj[airport_dict.at(std::stoi(vec[0]))->index] = adj_vec;
+            } else {
+                map_adj[airport_dict.at(std::stoi(vec[0]))->index]->insert(airport_dict.at(std::stoi(vec[1]))->index);
+            }
         }
     }  
 }
 
-cs225::PNG* Voyager::DrawGraph(short** matrix) {
+cs225::PNG* Voyager::DrawGraph( std::map<int, std::unordered_set<int>*>& map) {
 
     //TODO: Write your code here
     return nullptr;
 }
 
-int* Voyager::centrality(short** matrix) {
+double* Voyager::centrality( std::map<int, std::unordered_set<int>*>& map) {
 
-    //TODO: Write your code here
-    return nullptr;
+    int SIZE = map.size();
+    double* centrality = new double[SIZE];
+    // iterate for each first and second vertex
+    for (int firstVertex = 0; firstVertex < SIZE; firstVertex++) {
+        for (int secondVertex = firstVertex + 1; secondVertex < SIZE; secondVertex++) {
+            // if first and second vertex is neighbor, skip
+            if (map.count(firstVertex) == 0 || map[firstVertex]->count(secondVertex) != 0) continue;
+            // get shortest path
+            int* stepCount = getStepCount(map, firstVertex, secondVertex);
+            // back traversal to find shortest path
+            int* pathCount = getPathCount(map, stepCount, firstVertex, secondVertex);
+            // update centrality
+            int totalPath = pathCount[firstVertex];
+            for (int i = 0; i < SIZE; i++) {
+                if (i == firstVertex || i == secondVertex) continue;
+                centrality[i] += pathCount[i] / totalPath;
+            }
+            // delete step count array
+            delete[] stepCount;
+            delete[] pathCount;
+        }
+    }
+    return centrality;
+}
+
+int* getStepCount(std::map<int, std::unordered_set<int>*>& map, int departureIndex, int destIndex) {
+
+    int SIZE = map.size();
+    int* stepCount = new int[SIZE];
+    std::queue<int> queue;
+    queue.push(departureIndex);
+    bool isfound = false;
+    // bfs mark steps from firstVertex to secondVertex
+    while (!queue.empty() && !isfound) {
+        // get first element in queue
+        int index = queue.front();
+        queue.pop();
+        int step = stepCount[index] + 1;
+        std::unordered_set<int>* set = map[index];
+        for (int i = 0 ; i < set->size(); i++) {
+            if (i == destIndex) isfound = true;
+            if (stepCount[i] != 0 || stepCount[i] > step) {
+                stepCount[i] = step;
+            }
+            queue.push(i);
+        }
+    }
+    return stepCount;
+}
+
+int* getPathCount(std::map<int, std::unordered_set<int>*>& map, int* stepCount, int departureIndex, int destIndex) {
+
+    int* pathCount = new int[map.size()];
+    std::queue<int> queue;
+    queue.push(destIndex);
+    while (!queue.empty()) {
+        int index = queue.front();
+        queue.pop();
+        int step = stepCount[index] - 1;
+        pathCount[index]++;
+        std::unordered_set<int>* set = map[index];
+        int tempNodeCount = 0;
+        for (int i = 0; i < set->size(); i++) {
+            if (stepCount[i] == step)  queue.push(i);
+        }
+    }
+    return pathCount;
 }
 
 
@@ -117,24 +178,6 @@ void Voyager::DrawLine(cs225::PNG &png, int src_x, int src_y, int dest_x, int de
     //TODO: Write your code here
 
 }
-
-// std::pair<Voyager::Dir, int> Voyager::GetDirDist(int src_x, int src_y, int dest_x, int dest_y) {
-    
-//     int dist = (int)sqrt(pow(src_x - dest_y, 2) + pow(src_y - dest_y, 2));
-//     if (!dist) std::cerr << "Airport coordinate parsing error \n" << "Same airport route appeared" << std::endl; 
-//     std::pair<Voyager::Dir, int> res;
-//     res.second = dist;
-//     if (src_x == dest_x) {
-//         if (src_y > dest_y) res.first = Voyager::Dir(SOUTH);
-//         else res.first = Voyager::Dir(NORTH);
-//         return res;
-//     }
-//     else {
-//         if (src_x > dest_x) res.first = Voyager::Dir(WEST);
-//         else res.first = Voyager::Dir(EAST);
-//         return res;
-//     }
-// }
 
 std::map<int, Voyager::Airport*>& Voyager::getAptDict() {
     return airport_dict;
