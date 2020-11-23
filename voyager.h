@@ -156,7 +156,7 @@ class Voyager {
          * @param destIndex if od destination index
          * @return array of int representing minimum steps from departure airport
          */ 
-        int* getStepCount(std::map<int, std::unordered_set<int>*>& map, int departureIndex, int destIndex);
+        int* GetStepCount(std::map<int, std::unordered_set<int>*>& map, int departureIndex, int destIndex);
 
         /**
          * calculate number of each airport appears in all shortest path from departure to destination airport
@@ -166,5 +166,5 @@ class Voyager {
          * @param destIndex id of destination airport.
          * @return array of int representing number of each airport appears in all shortest path from departure to dest airport.
          */ 
-        int* getPathCount(std::map<int, std::unordered_set<int>*>& map, int* stepCount, int departureIndex, int destIndex);
+        int* GetPathCount(std::map<int, std::unordered_set<int>*>& map, int* stepCount, int departureIndex, int destIndex);
 };

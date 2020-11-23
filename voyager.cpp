@@ -111,9 +111,9 @@ double* Voyager::centrality( std::map<int, std::unordered_set<int>*>& map) {
             // if first and second vertex is neighbor, skip
             if (map.count(firstVertex) == 0 || map[firstVertex]->count(secondVertex) != 0) continue;
             // get shortest path
-            int* stepCount = getStepCount(map, firstVertex, secondVertex);
+            int* stepCount = GetStepCount(map, firstVertex, secondVertex);
             // back traversal to find shortest path
-            int* pathCount = getPathCount(map, stepCount, firstVertex, secondVertex);
+            int* pathCount = GetPathCount(map, stepCount, firstVertex, secondVertex);
             // update centrality
             int totalPath = pathCount[firstVertex];
             for (int i = 0; i < SIZE; i++) {
@@ -128,7 +128,7 @@ double* Voyager::centrality( std::map<int, std::unordered_set<int>*>& map) {
     return centrality;
 }
 
-int* getStepCount(std::map<int, std::unordered_set<int>*>& map, int departureIndex, int destIndex) {
+int* GetStepCount(std::map<int, std::unordered_set<int>*>& map, int departureIndex, int destIndex) {
 
     int SIZE = map.size();
     int* stepCount = new int[SIZE];
@@ -153,7 +153,7 @@ int* getStepCount(std::map<int, std::unordered_set<int>*>& map, int departureInd
     return stepCount;
 }
 
-int* getPathCount(std::map<int, std::unordered_set<int>*>& map, int* stepCount, int departureIndex, int destIndex) {
+int* GetPathCount(std::map<int, std::unordered_set<int>*>& map, int* stepCount, int departureIndex, int destIndex) {
 
     int* pathCount = new int[map.size()];
     std::queue<int> queue;
