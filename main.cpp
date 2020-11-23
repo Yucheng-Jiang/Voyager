@@ -8,6 +8,6 @@ int main(int argc, const char *argv[]) {
 
     //TODO: Write your code HERE:
     //Voyager* voyager = new Voyager();
-    
+    std::cout << "lalala" << std::endl;
     return 0;
 }

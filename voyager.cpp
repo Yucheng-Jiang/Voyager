@@ -170,10 +170,7 @@ double* Voyager::centrality(std::map<int, std::unordered_set<int>*>& map) {
             delete[] pathCount;
         }
     }
-    for (int i = 0; i < SIZE; i++) {
-        std::cout << centrality[i] << ", ";
-    }
-    std::cout << "\n";
+    
     return centrality;
 }
 
@@ -272,6 +269,10 @@ int Voyager::convertToY(cs225::PNG& png, double lati, double longi) {
     return y;
 }
 
-std::map<int, Voyager::Airport*>& Voyager::getAptDict() {
+std::map<int, Voyager::Airport*>& Voyager::GetAptDict() {
     return airport_dict;
+}
+
+std::map<int, std::unordered_set<int>*>& Voyager::GetAdjMatrix() {
+    return map_adj;
 }

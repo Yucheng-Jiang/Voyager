@@ -128,7 +128,13 @@ class Voyager {
          * airport dictionary getter
          * @return reference of the airport dictionary
          */ 
-        std::map<int, Airport*>& getAptDict();
+        std::map<int, Airport*>& GetAptDict();
+
+        /**
+         * adjacency map getter
+         * @return reference to the adjacency map
+         */
+        std::map<int, std::unordered_set<int>*>& GetAdjMatrix();
         
     private:
         // Airport dictionary using airport unique id as key and airport pointer as value.

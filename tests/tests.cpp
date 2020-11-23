@@ -2,6 +2,7 @@
 #include <vector>
 #include <map>
 #include <unordered_set>
+#include <iterator>
 
 #include "../catch/catch.hpp"
 #include "../voyager.h"
@@ -14,16 +15,19 @@
 1. TEST Init
     - 1 Test read airport database size.
     - 2 Test first/last/randomly select airport read accuracy.
-
+    - 3 Test Adjacency matrix
 2. TEST Betweeness Centrality
+    - 1 Test basic graph centrality 1
+    - 2 Test basic graph centrality 2
+    - 3 Test database with 5 busiest apt
 
 ------------------ END ------------------*/
 
-TEST_CASE("Test Init", "[apt-dict init][init]") {
+TEST_CASE("Test Apt Init", "[apt-dict init][init][basic]") {
 
     int APT_DAT_SIZE = 7698;
     Voyager* voyager = new Voyager();
-    std::map<int, Voyager::Airport*> apt_dict = voyager->getAptDict();
+    std::map<int, Voyager::Airport*> apt_dict = voyager->GetAptDict();
 
     //randomly select apt to test
     //1,Goroka Airport,GKA,-6.081689835,145.3919983
@@ -77,8 +81,42 @@ TEST_CASE("Test Init", "[apt-dict init][init]") {
     delete voyager; voyager = nullptr;
 }
 
+TEST_CASE("Test adj-matrix init", "[routes init][init][basic]") {
+
+    Voyager *voyager = new Voyager("dataset/testapt.dat", "dataset/testroutes");
+    Voyager::Airport* HGH = new Voyager::Airport("Hangzhou Xiaoshan International Airport", "HGH", 30.22949982, 120.4339981, 1);
+    Voyager::Airport* CTU = new Voyager::Airport("Chengdu Shuangliu International Airport", "CTU", 30.57850075, 103.9469986, 4);
+    Voyager::Airport* PVG = new Voyager::Airport("Shanghai Pudong International Airport", "PVG", 31.14340019,121.8050003, 2);
+    Voyager::Airport* PEK = new Voyager::Airport("Beijing Capital International Airport", "PEK", 40.08010101,116.5849991, 3);
+
+    // Expected
+    std::map<int, std::unordered_set<int>*> expected;
+    expected.insert(std::make_pair(0, new std::unordered_set<int>({2, 3})));
+    expected.insert(std::make_pair(1, new std::unordered_set<int>({2})));
+    expected.insert(std::make_pair(2, new std::unordered_set<int>({0, 1, 3})));
+    expected.insert(std::make_pair(3, new std::unordered_set<int>({2})));
+    // Actual
+    std::map<int, std::unordered_set<int>*> actual = voyager->GetAdjMatrix();
+    REQUIRE(expected.size() == actual.size());
+    bool same_map = true;
+    
+    for (int i = 1; i < (int)expected.size(); i++) {
+        if (*expected.at(i) != *actual.at(i)) {
+            same_map = false;
+            break;
+        }
+    }
+
+    //clean up
+    delete voyager;             voyager = nullptr;
+    for (auto it : expected) {
+        delete it.second;       it.second = nullptr;
+    }
+    REQUIRE(same_map);
+}
+
 //src graph: ../tests/CentralityTest1 Elem.png
-TEST_CASE("Test Centrality", "[centrality][elementary]") {
+TEST_CASE("Test Centrality", "[centrality][basic]") {
 
     Voyager *voyager = new Voyager();
     //init
@@ -129,13 +167,14 @@ TEST_CASE("Test Centrality", "[centrality][elementary]") {
             break;
         }
     }
-    REQUIRE(same_arr);
     // delete memory
-    delete[] res;
-    delete voyager;
+    delete[] res;               res = nullptr;
+    delete voyager;             voyager = nullptr;
     for (auto it : adj_matrix) {
-        delete it.second;
+        delete it.second;       it.second = nullptr;
     }
+    REQUIRE(same_arr);
+    
 }
 
 //src graph: ../tests/centrality_test_basic.jpg
@@ -175,11 +214,23 @@ TEST_CASE("Test Centrality basic", "[centrality][basic]") {
             break;
         }
     }
-    REQUIRE(same_arr);
+    
     // delete memory
-    delete[] res;
-    delete voyager;
+    delete[] res;           res = nullptr;
+    delete voyager;         voyager = nullptr;
     for (auto it : adj_matrix) {
-        delete it.second;
+        delete it.second;   it.second = nullptr;
     }
+    REQUIRE(same_arr);
+}
+
+TEST_CASE("Test centrality large dataset", "[centrality][complex]") {
+
+    // busiest connecting apt in the world DXB/ATL/HKG/LHR/LAX
+    //                                   2101/1383/2916/503/3286
+    Voyager *voyager = new Voyager();
+    std::cout << voyager->GetAptDict().size() << std::endl;
+    std::cout << voyager->GetAdjMatrix().size() << std::endl;
+    double *res = voyager->centrality(voyager->GetAdjMatrix());
+    REQUIRE(true);
 }
