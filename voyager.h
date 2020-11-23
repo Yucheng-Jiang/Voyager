@@ -56,15 +56,23 @@ class Voyager {
             }
 
             /**
+             * equal operator overloading
+             * @param other const reference of another airport
+             */
+            bool operator== (Airport const & other) const {
+                return !(*this != other);
+            }            
+
+            /**
              * not equal operator
              * @param other const reference of another airport
              */ 
              bool operator!= (Airport const & other) const {
-                return IATA == other.IATA 
+                return !(IATA == other.IATA 
                     && name == other.name 
                     && lati_ == other.lati_ 
                     && longi_ == other.longi_ 
-                    && index == other.index;
+                    && index == other.index);
             }
             
             // the index in the dataset
