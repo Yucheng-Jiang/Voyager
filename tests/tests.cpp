@@ -127,6 +127,7 @@ TEST_CASE("Test Centrality", "[centrality][elementary]") {
     for (int i = 0; i < id; i++) {
         if (expected[i] != res[i]) {
             same_arr = false;
+            break;
         }
     }
     REQUIRE(same_arr);
