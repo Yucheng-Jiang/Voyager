@@ -98,14 +98,14 @@ class Voyager {
          * @param map adjacency matrix. 
          * @return pointer of the updated PNG
          */ 
-        cs225::PNG* DrawGraph( std::map<int, std::unordered_set<int>*>& map);
+        cs225::PNG* DrawGraph(std::map<int, std::unordered_set<int>*>& map, cs225::PNG& png);
 
         /**
          * calculate betweeness centriality of each airport.
          * @param map adjacency matrix.
          * @return array of int representing centrailiaty of each airport
          */ 
-        double* centrality( std::map<int, std::unordered_set<int>*>& map);
+        double* centrality(std::map<int, std::unordered_set<int>*>& map);
 
         /**
          * destructor. delete aiport dictionary and adjacency matrix.
@@ -139,14 +139,16 @@ class Voyager {
         void ReadRoute(std::string filePath);
 
         /**
-         * draw lines onto png from source to destination.
-         * @param src_x x coordinate of starting pixel on png.
-         * @param src_y y coordinate of staring pixel on png.
-         * @param dest_x x coordinate of ending pixel on png.
-         * @param dest_y y coordinate of ending pixel on png.
+         * 
          */
-        void DrawLine(cs225::PNG &png, int src_x, int src_y, int dest_x, int dest_y);
+        int convertToX(cs225::PNG png, double lati, double longi);
+        int convertToY(cs225::PNG png, double lati, double longi);
 
+        //cs225::PNG* addHeatPoint(int x, int y);
+
+        /**
+         * 
+         *
 
         /**
          * get minimum steps of each airport from departure airport. 

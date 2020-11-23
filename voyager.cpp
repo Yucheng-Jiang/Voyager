@@ -95,13 +95,54 @@ void Voyager::ReadRoute(std::string filePath) {
     }  
 }
 
-cs225::PNG* Voyager::DrawGraph( std::map<int, std::unordered_set<int>*>& map) {
+cs225::PNG* Voyager::DrawGraph(std::map<int, std::unordered_set<int>*>& map, cs225::PNG& png) {
 
     //TODO: Write your code here
-    return nullptr;
-}
+    std::vector<double> cArray;
+    std::vector<double> tempArray;
+    double* centrArray = centrality(map);
+    for (int i = 0; i = map.size(); i++) {
+        cArray.push_back(centrArray[i]);
+        tempArray.push_back(centrArray[i]);
+    }
+    std::sort(tempArray.begin(), tempArray.end());
+    double min = tempArray[0];
+    double max = tempArray[map.size()];
+    int index = 0;
+    for (auto& c : map) {
+        int airportID = c.first;
+        double lati = (airport_dict.find(airportID)->second)->lati_;
+        double longi = (airport_dict.find(airportID)->second)->longi_;
+        int x = convertToX(png, lati, longi);
+        int y = convertToY(png, lati, longi);
+        if (cArray[index] == max) {
+            int length = 2;
+            for (int i = x - 2; i < x + 2; x++) {
+                for (int j = y - 2; j < y + 2; y++) {
+                    png.getPixel(i, j).h = 0;
+                    png.getPixel(i, j).s = 1;
+                    png.getPixel(i, j).l = 0.5;
+                    png.getPixel(i, j).a = 1;
+                }
+            }
+        } else {
+            for (int i = x - 2; i < x + 2; x++) {
+                for (int j = y - 2; j < y + 2; y++) {
+                    png.getPixel(i, j).h = 255;
+                    png.getPixel(i, j).s = 1;
+                    png.getPixel(i, j).l = 0.5;
+                    png.getPixel(i, j).a = 1;
+                }
+            }
+        }
 
-double* Voyager::centrality( std::map<int, std::unordered_set<int>*>& map) {
+        index+=1;
+    }
+
+    return &png;
+    
+}
+double* Voyager::centrality(std::map<int, std::unordered_set<int>*>& map) {
 
     int SIZE = map.size();
     double* centrality = new double[SIZE];
@@ -171,12 +212,16 @@ int* GetPathCount(std::map<int, std::unordered_set<int>*>& map, int* stepCount, 
     }
     return pathCount;
 }
-
-
-void Voyager::DrawLine(cs225::PNG &png, int src_x, int src_y, int dest_x, int dest_y) {
-
-    //TODO: Write your code here
-
+int convertToX(cs225::PNG png, double lati, double longi) {
+    int x = std::fmod((png.width() * (180 + longi)/ 360), (png.width() + (png.width() / 2)));
+    return x;
+}
+int convertToY(cs225::PNG png, double lati, double longi) {
+    double PI = 3.14159265359;
+    double latRad = lati * PI / 180;
+    double mapProjc = std::log(tan((PI / 4) + (latRad / 2)));
+    int y = (png.height() / 2) - (png.width() * mapProjc / (2 * PI));
+    return y;
 }
 
 std::map<int, Voyager::Airport*>& Voyager::getAptDict() {
