@@ -1,0 +1,2686 @@
+=============================
+start: 0 end: 1
+node 0 has step 0
+node 1 has step 3
+node 2 has step 1
+node 3 has step -1
+node 4 has step 3
+node 5 has step 2
+node 6 has step 3
+node 7 has step 3
+node 8 has step 3
+node 9 has step -1
+node 10 has step -1
+node 11 has step -1
+node 12 has step -1
+node 13 has step -1
+node 14 has step -1
+=============================
+
+
+
+get path count from 0 to 1
+=============================
+node 0 appearance = 1
+node 1 appearance = 1
+node 2 appearance = 1
+node 5 appearance = 1
+=============================
+
+
+
+=============================
+start: 0 end: 3
+node 0 has step 0
+node 1 has step 3
+node 2 has step 1
+node 3 has step 4
+node 4 has step 3
+node 5 has step 2
+node 6 has step 3
+node 7 has step 3
+node 8 has step 3
+node 9 has step 4
+node 10 has step -1
+node 11 has step 4
+node 12 has step -1
+node 13 has step -1
+node 14 has step -1
+=============================
+
+
+
+get path count from 0 to 3
+=============================
+node 0 appearance = 1
+node 2 appearance = 1
+node 3 appearance = 1
+node 4 appearance = 1
+node 5 appearance = 1
+=============================
+
+
+
+=============================
+start: 0 end: 4
+node 0 has step 0
+node 1 has step 3
+node 2 has step 1
+node 3 has step -1
+node 4 has step 3
+node 5 has step 2
+node 6 has step 3
+node 7 has step 3
+node 8 has step 3
+node 9 has step -1
+node 10 has step -1
+node 11 has step -1
+node 12 has step -1
+node 13 has step -1
+node 14 has step -1
+=============================
+
+
+
+get path count from 0 to 4
+=============================
+node 0 appearance = 1
+node 2 appearance = 1
+node 4 appearance = 1
+node 5 appearance = 1
+=============================
+
+
+
+=============================
+start: 0 end: 5
+node 0 has step 0
+node 1 has step -1
+node 2 has step 1
+node 3 has step -1
+node 4 has step -1
+node 5 has step 2
+node 6 has step -1
+node 7 has step -1
+node 8 has step -1
+node 9 has step -1
+node 10 has step -1
+node 11 has step -1
+node 12 has step -1
+node 13 has step -1
+node 14 has step -1
+=============================
+
+
+
+get path count from 0 to 5
+=============================
+node 0 appearance = 1
+node 2 appearance = 1
+node 5 appearance = 1
+=============================
+
+
+
+=============================
+start: 0 end: 6
+node 0 has step 0
+node 1 has step 3
+node 2 has step 1
+node 3 has step -1
+node 4 has step 3
+node 5 has step 2
+node 6 has step 3
+node 7 has step 3
+node 8 has step 3
+node 9 has step -1
+node 10 has step -1
+node 11 has step -1
+node 12 has step -1
+node 13 has step -1
+node 14 has step -1
+=============================
+
+
+
+get path count from 0 to 6
+=============================
+node 0 appearance = 1
+node 2 appearance = 1
+node 5 appearance = 1
+node 6 appearance = 1
+=============================
+
+
+
+=============================
+start: 0 end: 7
+node 0 has step 0
+node 1 has step 3
+node 2 has step 1
+node 3 has step -1
+node 4 has step 3
+node 5 has step 2
+node 6 has step 3
+node 7 has step 3
+node 8 has step 3
+node 9 has step -1
+node 10 has step -1
+node 11 has step -1
+node 12 has step -1
+node 13 has step -1
+node 14 has step -1
+=============================
+
+
+
+get path count from 0 to 7
+=============================
+node 0 appearance = 1
+node 2 appearance = 1
+node 5 appearance = 1
+node 7 appearance = 1
+=============================
+
+
+
+=============================
+start: 0 end: 8
+node 0 has step 0
+node 1 has step 3
+node 2 has step 1
+node 3 has step -1
+node 4 has step 3
+node 5 has step 2
+node 6 has step 3
+node 7 has step 3
+node 8 has step 3
+node 9 has step -1
+node 10 has step -1
+node 11 has step -1
+node 12 has step -1
+node 13 has step -1
+node 14 has step -1
+=============================
+
+
+
+get path count from 0 to 8
+=============================
+node 0 appearance = 1
+node 2 appearance = 1
+node 5 appearance = 1
+node 8 appearance = 1
+=============================
+
+
+
+=============================
+start: 0 end: 9
+node 0 has step 0
+node 1 has step 3
+node 2 has step 1
+node 3 has step 4
+node 4 has step 3
+node 5 has step 2
+node 6 has step 3
+node 7 has step 3
+node 8 has step 3
+node 9 has step 4
+node 10 has step -1
+node 11 has step 4
+node 12 has step -1
+node 13 has step -1
+node 14 has step -1
+=============================
+
+
+
+get path count from 0 to 9
+=============================
+node 0 appearance = 2
+node 2 appearance = 2
+node 4 appearance = 1
+node 5 appearance = 2
+node 6 appearance = 1
+node 9 appearance = 1
+=============================
+
+
+
+=============================
+start: 0 end: 10
+node 0 has step 0
+node 1 has step 3
+node 2 has step 1
+node 3 has step 4
+node 4 has step 3
+node 5 has step 2
+node 6 has step 3
+node 7 has step 3
+node 8 has step 3
+node 9 has step 4
+node 10 has step 4
+node 11 has step 4
+node 12 has step -1
+node 13 has step -1
+node 14 has step -1
+=============================
+
+
+
+get path count from 0 to 10
+=============================
+node 0 appearance = 1
+node 2 appearance = 1
+node 5 appearance = 1
+node 7 appearance = 1
+node 10 appearance = 1
+=============================
+
+
+
+=============================
+start: 0 end: 11
+node 0 has step 0
+node 1 has step 3
+node 2 has step 1
+node 3 has step -1
+node 4 has step 3
+node 5 has step 2
+node 6 has step 3
+node 7 has step 3
+node 8 has step 3
+node 9 has step -1
+node 10 has step -1
+node 11 has step 4
+node 12 has step -1
+node 13 has step -1
+node 14 has step -1
+=============================
+
+
+
+get path count from 0 to 11
+=============================
+node 0 appearance = 1
+node 2 appearance = 1
+node 5 appearance = 1
+node 8 appearance = 1
+node 11 appearance = 1
+=============================
+
+
+
+=============================
+start: 0 end: 12
+node 0 has step 0
+node 1 has step 3
+node 2 has step 1
+node 3 has step 4
+node 4 has step 3
+node 5 has step 2
+node 6 has step 3
+node 7 has step 3
+node 8 has step 3
+node 9 has step 4
+node 10 has step 4
+node 11 has step 4
+node 12 has step 5
+node 13 has step 5
+node 14 has step 5
+=============================
+
+
+
+get path count from 0 to 12
+=============================
+node 0 appearance = 2
+node 2 appearance = 2
+node 4 appearance = 1
+node 5 appearance = 2
+node 6 appearance = 1
+node 9 appearance = 1
+node 12 appearance = 1
+=============================
+
+
+
+=============================
+start: 0 end: 13
+node 0 has step 0
+node 1 has step 3
+node 2 has step 1
+node 3 has step 4
+node 4 has step 3
+node 5 has step 2
+node 6 has step 3
+node 7 has step 3
+node 8 has step 3
+node 9 has step 4
+node 10 has step 4
+node 11 has step 4
+node 12 has step 5
+node 13 has step 5
+node 14 has step 5
+=============================
+
+
+
+get path count from 0 to 13
+=============================
+node 0 appearance = 3
+node 2 appearance = 3
+node 4 appearance = 1
+node 5 appearance = 3
+node 6 appearance = 1
+node 7 appearance = 1
+node 9 appearance = 1
+node 10 appearance = 1
+node 13 appearance = 1
+=============================
+
+
+
+=============================
+start: 0 end: 14
+node 0 has step 0
+node 1 has step 3
+node 2 has step 1
+node 3 has step 4
+node 4 has step 3
+node 5 has step 2
+node 6 has step 3
+node 7 has step 3
+node 8 has step 3
+node 9 has step 4
+node 10 has step 4
+node 11 has step 4
+node 12 has step -1
+node 13 has step -1
+node 14 has step 5
+=============================
+
+
+
+get path count from 0 to 14
+=============================
+node 0 appearance = 2
+node 2 appearance = 2
+node 5 appearance = 2
+node 7 appearance = 1
+node 8 appearance = 1
+node 10 appearance = 1
+node 11 appearance = 1
+node 14 appearance = 1
+=============================
+
+
+
+=============================
+start: 1 end: 2
+node 0 has step -1
+node 1 has step 0
+node 2 has step 2
+node 3 has step -1
+node 4 has step 2
+node 5 has step 1
+node 6 has step 2
+node 7 has step 2
+node 8 has step 2
+node 9 has step -1
+node 10 has step -1
+node 11 has step -1
+node 12 has step -1
+node 13 has step -1
+node 14 has step -1
+=============================
+
+
+
+get path count from 1 to 2
+=============================
+node 1 appearance = 1
+node 2 appearance = 1
+node 5 appearance = 1
+=============================
+
+
+
+=============================
+start: 1 end: 3
+node 0 has step -1
+node 1 has step 0
+node 2 has step 2
+node 3 has step 3
+node 4 has step 2
+node 5 has step 1
+node 6 has step 2
+node 7 has step 2
+node 8 has step 2
+node 9 has step 3
+node 10 has step -1
+node 11 has step 3
+node 12 has step -1
+node 13 has step -1
+node 14 has step -1
+=============================
+
+
+
+get path count from 1 to 3
+=============================
+node 1 appearance = 1
+node 3 appearance = 1
+node 4 appearance = 1
+node 5 appearance = 1
+=============================
+
+
+
+=============================
+start: 1 end: 4
+node 0 has step -1
+node 1 has step 0
+node 2 has step 2
+node 3 has step -1
+node 4 has step 2
+node 5 has step 1
+node 6 has step 2
+node 7 has step 2
+node 8 has step 2
+node 9 has step -1
+node 10 has step -1
+node 11 has step -1
+node 12 has step -1
+node 13 has step -1
+node 14 has step -1
+=============================
+
+
+
+get path count from 1 to 4
+=============================
+node 1 appearance = 1
+node 4 appearance = 1
+node 5 appearance = 1
+=============================
+
+
+
+=============================
+start: 1 end: 6
+node 0 has step -1
+node 1 has step 0
+node 2 has step 2
+node 3 has step -1
+node 4 has step 2
+node 5 has step 1
+node 6 has step 2
+node 7 has step 2
+node 8 has step 2
+node 9 has step -1
+node 10 has step -1
+node 11 has step -1
+node 12 has step -1
+node 13 has step -1
+node 14 has step -1
+=============================
+
+
+
+get path count from 1 to 6
+=============================
+node 1 appearance = 1
+node 5 appearance = 1
+node 6 appearance = 1
+=============================
+
+
+
+=============================
+start: 1 end: 7
+node 0 has step -1
+node 1 has step 0
+node 2 has step 2
+node 3 has step -1
+node 4 has step 2
+node 5 has step 1
+node 6 has step 2
+node 7 has step 2
+node 8 has step 2
+node 9 has step -1
+node 10 has step -1
+node 11 has step -1
+node 12 has step -1
+node 13 has step -1
+node 14 has step -1
+=============================
+
+
+
+get path count from 1 to 7
+=============================
+node 1 appearance = 1
+node 5 appearance = 1
+node 7 appearance = 1
+=============================
+
+
+
+=============================
+start: 1 end: 8
+node 0 has step -1
+node 1 has step 0
+node 2 has step 2
+node 3 has step -1
+node 4 has step 2
+node 5 has step 1
+node 6 has step 2
+node 7 has step 2
+node 8 has step 2
+node 9 has step -1
+node 10 has step -1
+node 11 has step -1
+node 12 has step -1
+node 13 has step -1
+node 14 has step -1
+=============================
+
+
+
+get path count from 1 to 8
+=============================
+node 1 appearance = 1
+node 5 appearance = 1
+node 8 appearance = 1
+=============================
+
+
+
+=============================
+start: 1 end: 9
+node 0 has step -1
+node 1 has step 0
+node 2 has step 2
+node 3 has step 3
+node 4 has step 2
+node 5 has step 1
+node 6 has step 2
+node 7 has step 2
+node 8 has step 2
+node 9 has step 3
+node 10 has step -1
+node 11 has step 3
+node 12 has step -1
+node 13 has step -1
+node 14 has step -1
+=============================
+
+
+
+get path count from 1 to 9
+=============================
+node 1 appearance = 2
+node 4 appearance = 1
+node 5 appearance = 2
+node 6 appearance = 1
+node 9 appearance = 1
+=============================
+
+
+
+=============================
+start: 1 end: 10
+node 0 has step -1
+node 1 has step 0
+node 2 has step 2
+node 3 has step 3
+node 4 has step 2
+node 5 has step 1
+node 6 has step 2
+node 7 has step 2
+node 8 has step 2
+node 9 has step 3
+node 10 has step 3
+node 11 has step 3
+node 12 has step -1
+node 13 has step -1
+node 14 has step -1
+=============================
+
+
+
+get path count from 1 to 10
+=============================
+node 1 appearance = 1
+node 5 appearance = 1
+node 7 appearance = 1
+node 10 appearance = 1
+=============================
+
+
+
+=============================
+start: 1 end: 11
+node 0 has step -1
+node 1 has step 0
+node 2 has step 2
+node 3 has step -1
+node 4 has step 2
+node 5 has step 1
+node 6 has step 2
+node 7 has step 2
+node 8 has step 2
+node 9 has step -1
+node 10 has step -1
+node 11 has step 3
+node 12 has step -1
+node 13 has step -1
+node 14 has step -1
+=============================
+
+
+
+get path count from 1 to 11
+=============================
+node 1 appearance = 1
+node 5 appearance = 1
+node 8 appearance = 1
+node 11 appearance = 1
+=============================
+
+
+
+=============================
+start: 1 end: 12
+node 0 has step 3
+node 1 has step 0
+node 2 has step 2
+node 3 has step 3
+node 4 has step 2
+node 5 has step 1
+node 6 has step 2
+node 7 has step 2
+node 8 has step 2
+node 9 has step 3
+node 10 has step 3
+node 11 has step 3
+node 12 has step 4
+node 13 has step 4
+node 14 has step 4
+=============================
+
+
+
+get path count from 1 to 12
+=============================
+node 1 appearance = 2
+node 4 appearance = 1
+node 5 appearance = 2
+node 6 appearance = 1
+node 9 appearance = 1
+node 12 appearance = 1
+=============================
+
+
+
+=============================
+start: 1 end: 13
+node 0 has step 3
+node 1 has step 0
+node 2 has step 2
+node 3 has step 3
+node 4 has step 2
+node 5 has step 1
+node 6 has step 2
+node 7 has step 2
+node 8 has step 2
+node 9 has step 3
+node 10 has step 3
+node 11 has step 3
+node 12 has step 4
+node 13 has step 4
+node 14 has step 4
+=============================
+
+
+
+get path count from 1 to 13
+=============================
+node 1 appearance = 3
+node 4 appearance = 1
+node 5 appearance = 3
+node 6 appearance = 1
+node 7 appearance = 1
+node 9 appearance = 1
+node 10 appearance = 1
+node 13 appearance = 1
+=============================
+
+
+
+=============================
+start: 1 end: 14
+node 0 has step 3
+node 1 has step 0
+node 2 has step 2
+node 3 has step 3
+node 4 has step 2
+node 5 has step 1
+node 6 has step 2
+node 7 has step 2
+node 8 has step 2
+node 9 has step 3
+node 10 has step 3
+node 11 has step 3
+node 12 has step -1
+node 13 has step -1
+node 14 has step 4
+=============================
+
+
+
+get path count from 1 to 14
+=============================
+node 1 appearance = 2
+node 5 appearance = 2
+node 7 appearance = 1
+node 8 appearance = 1
+node 10 appearance = 1
+node 11 appearance = 1
+node 14 appearance = 1
+=============================
+
+
+
+=============================
+start: 2 end: 3
+node 0 has step 1
+node 1 has step 2
+node 2 has step 0
+node 3 has step 3
+node 4 has step 2
+node 5 has step 1
+node 6 has step 2
+node 7 has step 2
+node 8 has step 2
+node 9 has step 3
+node 10 has step -1
+node 11 has step 3
+node 12 has step -1
+node 13 has step -1
+node 14 has step -1
+=============================
+
+
+
+get path count from 2 to 3
+=============================
+node 2 appearance = 1
+node 3 appearance = 1
+node 4 appearance = 1
+node 5 appearance = 1
+=============================
+
+
+
+=============================
+start: 2 end: 4
+node 0 has step 1
+node 1 has step 2
+node 2 has step 0
+node 3 has step -1
+node 4 has step 2
+node 5 has step 1
+node 6 has step 2
+node 7 has step 2
+node 8 has step 2
+node 9 has step -1
+node 10 has step -1
+node 11 has step -1
+node 12 has step -1
+node 13 has step -1
+node 14 has step -1
+=============================
+
+
+
+get path count from 2 to 4
+=============================
+node 2 appearance = 1
+node 4 appearance = 1
+node 5 appearance = 1
+=============================
+
+
+
+=============================
+start: 2 end: 6
+node 0 has step 1
+node 1 has step 2
+node 2 has step 0
+node 3 has step -1
+node 4 has step 2
+node 5 has step 1
+node 6 has step 2
+node 7 has step 2
+node 8 has step 2
+node 9 has step -1
+node 10 has step -1
+node 11 has step -1
+node 12 has step -1
+node 13 has step -1
+node 14 has step -1
+=============================
+
+
+
+get path count from 2 to 6
+=============================
+node 2 appearance = 1
+node 5 appearance = 1
+node 6 appearance = 1
+=============================
+
+
+
+=============================
+start: 2 end: 7
+node 0 has step 1
+node 1 has step 2
+node 2 has step 0
+node 3 has step -1
+node 4 has step 2
+node 5 has step 1
+node 6 has step 2
+node 7 has step 2
+node 8 has step 2
+node 9 has step -1
+node 10 has step -1
+node 11 has step -1
+node 12 has step -1
+node 13 has step -1
+node 14 has step -1
+=============================
+
+
+
+get path count from 2 to 7
+=============================
+node 2 appearance = 1
+node 5 appearance = 1
+node 7 appearance = 1
+=============================
+
+
+
+=============================
+start: 2 end: 8
+node 0 has step 1
+node 1 has step 2
+node 2 has step 0
+node 3 has step -1
+node 4 has step 2
+node 5 has step 1
+node 6 has step 2
+node 7 has step 2
+node 8 has step 2
+node 9 has step -1
+node 10 has step -1
+node 11 has step -1
+node 12 has step -1
+node 13 has step -1
+node 14 has step -1
+=============================
+
+
+
+get path count from 2 to 8
+=============================
+node 2 appearance = 1
+node 5 appearance = 1
+node 8 appearance = 1
+=============================
+
+
+
+=============================
+start: 2 end: 9
+node 0 has step 1
+node 1 has step 2
+node 2 has step 0
+node 3 has step 3
+node 4 has step 2
+node 5 has step 1
+node 6 has step 2
+node 7 has step 2
+node 8 has step 2
+node 9 has step 3
+node 10 has step -1
+node 11 has step 3
+node 12 has step -1
+node 13 has step -1
+node 14 has step -1
+=============================
+
+
+
+get path count from 2 to 9
+=============================
+node 2 appearance = 2
+node 4 appearance = 1
+node 5 appearance = 2
+node 6 appearance = 1
+node 9 appearance = 1
+=============================
+
+
+
+=============================
+start: 2 end: 10
+node 0 has step 1
+node 1 has step 2
+node 2 has step 0
+node 3 has step 3
+node 4 has step 2
+node 5 has step 1
+node 6 has step 2
+node 7 has step 2
+node 8 has step 2
+node 9 has step 3
+node 10 has step 3
+node 11 has step 3
+node 12 has step -1
+node 13 has step -1
+node 14 has step -1
+=============================
+
+
+
+get path count from 2 to 10
+=============================
+node 2 appearance = 1
+node 5 appearance = 1
+node 7 appearance = 1
+node 10 appearance = 1
+=============================
+
+
+
+=============================
+start: 2 end: 11
+node 0 has step 1
+node 1 has step 2
+node 2 has step 0
+node 3 has step -1
+node 4 has step 2
+node 5 has step 1
+node 6 has step 2
+node 7 has step 2
+node 8 has step 2
+node 9 has step -1
+node 10 has step -1
+node 11 has step 3
+node 12 has step -1
+node 13 has step -1
+node 14 has step -1
+=============================
+
+
+
+get path count from 2 to 11
+=============================
+node 2 appearance = 1
+node 5 appearance = 1
+node 8 appearance = 1
+node 11 appearance = 1
+=============================
+
+
+
+=============================
+start: 2 end: 12
+node 0 has step 1
+node 1 has step 2
+node 2 has step 0
+node 3 has step 3
+node 4 has step 2
+node 5 has step 1
+node 6 has step 2
+node 7 has step 2
+node 8 has step 2
+node 9 has step 3
+node 10 has step 3
+node 11 has step 3
+node 12 has step 4
+node 13 has step 4
+node 14 has step 4
+=============================
+
+
+
+get path count from 2 to 12
+=============================
+node 2 appearance = 2
+node 4 appearance = 1
+node 5 appearance = 2
+node 6 appearance = 1
+node 9 appearance = 1
+node 12 appearance = 1
+=============================
+
+
+
+=============================
+start: 2 end: 13
+node 0 has step 1
+node 1 has step 2
+node 2 has step 0
+node 3 has step 3
+node 4 has step 2
+node 5 has step 1
+node 6 has step 2
+node 7 has step 2
+node 8 has step 2
+node 9 has step 3
+node 10 has step 3
+node 11 has step 3
+node 12 has step 4
+node 13 has step 4
+node 14 has step 4
+=============================
+
+
+
+get path count from 2 to 13
+=============================
+node 2 appearance = 3
+node 4 appearance = 1
+node 5 appearance = 3
+node 6 appearance = 1
+node 7 appearance = 1
+node 9 appearance = 1
+node 10 appearance = 1
+node 13 appearance = 1
+=============================
+
+
+
+=============================
+start: 2 end: 14
+node 0 has step 1
+node 1 has step 2
+node 2 has step 0
+node 3 has step 3
+node 4 has step 2
+node 5 has step 1
+node 6 has step 2
+node 7 has step 2
+node 8 has step 2
+node 9 has step 3
+node 10 has step 3
+node 11 has step 3
+node 12 has step -1
+node 13 has step -1
+node 14 has step 4
+=============================
+
+
+
+get path count from 2 to 14
+=============================
+node 2 appearance = 2
+node 5 appearance = 2
+node 7 appearance = 1
+node 8 appearance = 1
+node 10 appearance = 1
+node 11 appearance = 1
+node 14 appearance = 1
+=============================
+
+
+
+=============================
+start: 3 end: 5
+node 0 has step -1
+node 1 has step -1
+node 2 has step -1
+node 3 has step 0
+node 4 has step 1
+node 5 has step 2
+node 6 has step -1
+node 7 has step -1
+node 8 has step -1
+node 9 has step 2
+node 10 has step -1
+node 11 has step -1
+node 12 has step -1
+node 13 has step -1
+node 14 has step -1
+=============================
+
+
+
+get path count from 3 to 5
+=============================
+node 3 appearance = 1
+node 4 appearance = 1
+node 5 appearance = 1
+=============================
+
+
+
+=============================
+start: 3 end: 6
+node 0 has step -1
+node 1 has step -1
+node 2 has step -1
+node 3 has step 0
+node 4 has step 1
+node 5 has step 2
+node 6 has step 3
+node 7 has step -1
+node 8 has step -1
+node 9 has step 2
+node 10 has step -1
+node 11 has step -1
+node 12 has step 3
+node 13 has step 3
+node 14 has step -1
+=============================
+
+
+
+get path count from 3 to 6
+=============================
+node 3 appearance = 2
+node 4 appearance = 2
+node 5 appearance = 1
+node 6 appearance = 1
+node 9 appearance = 1
+=============================
+
+
+
+=============================
+start: 3 end: 7
+node 0 has step -1
+node 1 has step 3
+node 2 has step 3
+node 3 has step 0
+node 4 has step 1
+node 5 has step 2
+node 6 has step 3
+node 7 has step 3
+node 8 has step 3
+node 9 has step 2
+node 10 has step -1
+node 11 has step -1
+node 12 has step 3
+node 13 has step 3
+node 14 has step -1
+=============================
+
+
+
+get path count from 3 to 7
+=============================
+node 3 appearance = 1
+node 4 appearance = 1
+node 5 appearance = 1
+node 7 appearance = 1
+=============================
+
+
+
+=============================
+start: 3 end: 8
+node 0 has step -1
+node 1 has step 3
+node 2 has step 3
+node 3 has step 0
+node 4 has step 1
+node 5 has step 2
+node 6 has step 3
+node 7 has step 3
+node 8 has step 3
+node 9 has step 2
+node 10 has step -1
+node 11 has step -1
+node 12 has step 3
+node 13 has step 3
+node 14 has step -1
+=============================
+
+
+
+get path count from 3 to 8
+=============================
+node 3 appearance = 1
+node 4 appearance = 1
+node 5 appearance = 1
+node 8 appearance = 1
+=============================
+
+
+
+=============================
+start: 3 end: 9
+node 0 has step -1
+node 1 has step -1
+node 2 has step -1
+node 3 has step 0
+node 4 has step 1
+node 5 has step 2
+node 6 has step -1
+node 7 has step -1
+node 8 has step -1
+node 9 has step 2
+node 10 has step -1
+node 11 has step -1
+node 12 has step -1
+node 13 has step -1
+node 14 has step -1
+=============================
+
+
+
+get path count from 3 to 9
+=============================
+node 3 appearance = 1
+node 4 appearance = 1
+node 9 appearance = 1
+=============================
+
+
+
+=============================
+start: 3 end: 10
+node 0 has step -1
+node 1 has step 3
+node 2 has step 3
+node 3 has step 0
+node 4 has step 1
+node 5 has step 2
+node 6 has step 3
+node 7 has step 3
+node 8 has step 3
+node 9 has step 2
+node 10 has step 4
+node 11 has step -1
+node 12 has step 3
+node 13 has step 3
+node 14 has step 4
+=============================
+
+
+
+get path count from 3 to 10
+=============================
+node 3 appearance = 2
+node 4 appearance = 2
+node 5 appearance = 1
+node 7 appearance = 1
+node 9 appearance = 1
+node 10 appearance = 1
+node 13 appearance = 1
+=============================
+
+
+
+=============================
+start: 3 end: 11
+node 0 has step -1
+node 1 has step 3
+node 2 has step 3
+node 3 has step 0
+node 4 has step 1
+node 5 has step 2
+node 6 has step 3
+node 7 has step 3
+node 8 has step 3
+node 9 has step 2
+node 10 has step 4
+node 11 has step 4
+node 12 has step 3
+node 13 has step 3
+node 14 has step 4
+=============================
+
+
+
+get path count from 3 to 11
+=============================
+node 3 appearance = 1
+node 4 appearance = 1
+node 5 appearance = 1
+node 8 appearance = 1
+node 11 appearance = 1
+=============================
+
+
+
+=============================
+start: 3 end: 12
+node 0 has step -1
+node 1 has step -1
+node 2 has step -1
+node 3 has step 0
+node 4 has step 1
+node 5 has step 2
+node 6 has step 3
+node 7 has step -1
+node 8 has step -1
+node 9 has step 2
+node 10 has step -1
+node 11 has step -1
+node 12 has step 3
+node 13 has step 3
+node 14 has step -1
+=============================
+
+
+
+get path count from 3 to 12
+=============================
+node 3 appearance = 1
+node 4 appearance = 1
+node 9 appearance = 1
+node 12 appearance = 1
+=============================
+
+
+
+=============================
+start: 3 end: 13
+node 0 has step -1
+node 1 has step -1
+node 2 has step -1
+node 3 has step 0
+node 4 has step 1
+node 5 has step 2
+node 6 has step 3
+node 7 has step -1
+node 8 has step -1
+node 9 has step 2
+node 10 has step -1
+node 11 has step -1
+node 12 has step 3
+node 13 has step 3
+node 14 has step -1
+=============================
+
+
+
+get path count from 3 to 13
+=============================
+node 3 appearance = 1
+node 4 appearance = 1
+node 9 appearance = 1
+node 13 appearance = 1
+=============================
+
+
+
+=============================
+start: 3 end: 14
+node 0 has step -1
+node 1 has step 3
+node 2 has step 3
+node 3 has step 0
+node 4 has step 1
+node 5 has step 2
+node 6 has step 3
+node 7 has step 3
+node 8 has step 3
+node 9 has step 2
+node 10 has step 4
+node 11 has step -1
+node 12 has step 3
+node 13 has step 3
+node 14 has step 4
+=============================
+
+
+
+get path count from 3 to 14
+=============================
+node 3 appearance = 1
+node 4 appearance = 1
+node 9 appearance = 1
+node 13 appearance = 1
+node 14 appearance = 1
+=============================
+
+
+
+=============================
+start: 4 end: 6
+node 0 has step -1
+node 1 has step -1
+node 2 has step -1
+node 3 has step 1
+node 4 has step 0
+node 5 has step 1
+node 6 has step 2
+node 7 has step -1
+node 8 has step -1
+node 9 has step 1
+node 10 has step -1
+node 11 has step -1
+node 12 has step 2
+node 13 has step 2
+node 14 has step -1
+=============================
+
+
+
+get path count from 4 to 6
+=============================
+node 4 appearance = 2
+node 5 appearance = 1
+node 6 appearance = 1
+node 9 appearance = 1
+=============================
+
+
+
+=============================
+start: 4 end: 7
+node 0 has step -1
+node 1 has step 2
+node 2 has step 2
+node 3 has step 1
+node 4 has step 0
+node 5 has step 1
+node 6 has step 2
+node 7 has step 2
+node 8 has step 2
+node 9 has step 1
+node 10 has step -1
+node 11 has step -1
+node 12 has step 2
+node 13 has step 2
+node 14 has step -1
+=============================
+
+
+
+get path count from 4 to 7
+=============================
+node 4 appearance = 1
+node 5 appearance = 1
+node 7 appearance = 1
+=============================
+
+
+
+=============================
+start: 4 end: 8
+node 0 has step -1
+node 1 has step 2
+node 2 has step 2
+node 3 has step 1
+node 4 has step 0
+node 5 has step 1
+node 6 has step 2
+node 7 has step 2
+node 8 has step 2
+node 9 has step 1
+node 10 has step -1
+node 11 has step -1
+node 12 has step 2
+node 13 has step 2
+node 14 has step -1
+=============================
+
+
+
+get path count from 4 to 8
+=============================
+node 4 appearance = 1
+node 5 appearance = 1
+node 8 appearance = 1
+=============================
+
+
+
+=============================
+start: 4 end: 10
+node 0 has step -1
+node 1 has step 2
+node 2 has step 2
+node 3 has step 1
+node 4 has step 0
+node 5 has step 1
+node 6 has step 2
+node 7 has step 2
+node 8 has step 2
+node 9 has step 1
+node 10 has step 3
+node 11 has step -1
+node 12 has step 2
+node 13 has step 2
+node 14 has step 3
+=============================
+
+
+
+get path count from 4 to 10
+=============================
+node 4 appearance = 2
+node 5 appearance = 1
+node 7 appearance = 1
+node 9 appearance = 1
+node 10 appearance = 1
+node 13 appearance = 1
+=============================
+
+
+
+=============================
+start: 4 end: 11
+node 0 has step -1
+node 1 has step 2
+node 2 has step 2
+node 3 has step 1
+node 4 has step 0
+node 5 has step 1
+node 6 has step 2
+node 7 has step 2
+node 8 has step 2
+node 9 has step 1
+node 10 has step 3
+node 11 has step 3
+node 12 has step 2
+node 13 has step 2
+node 14 has step 3
+=============================
+
+
+
+get path count from 4 to 11
+=============================
+node 4 appearance = 1
+node 5 appearance = 1
+node 8 appearance = 1
+node 11 appearance = 1
+=============================
+
+
+
+=============================
+start: 4 end: 12
+node 0 has step -1
+node 1 has step -1
+node 2 has step -1
+node 3 has step 1
+node 4 has step 0
+node 5 has step 1
+node 6 has step 2
+node 7 has step -1
+node 8 has step -1
+node 9 has step 1
+node 10 has step -1
+node 11 has step -1
+node 12 has step 2
+node 13 has step 2
+node 14 has step -1
+=============================
+
+
+
+get path count from 4 to 12
+=============================
+node 4 appearance = 1
+node 9 appearance = 1
+node 12 appearance = 1
+=============================
+
+
+
+=============================
+start: 4 end: 13
+node 0 has step -1
+node 1 has step -1
+node 2 has step -1
+node 3 has step 1
+node 4 has step 0
+node 5 has step 1
+node 6 has step 2
+node 7 has step -1
+node 8 has step -1
+node 9 has step 1
+node 10 has step -1
+node 11 has step -1
+node 12 has step 2
+node 13 has step 2
+node 14 has step -1
+=============================
+
+
+
+get path count from 4 to 13
+=============================
+node 4 appearance = 1
+node 9 appearance = 1
+node 13 appearance = 1
+=============================
+
+
+
+=============================
+start: 4 end: 14
+node 0 has step -1
+node 1 has step 2
+node 2 has step 2
+node 3 has step 1
+node 4 has step 0
+node 5 has step 1
+node 6 has step 2
+node 7 has step 2
+node 8 has step 2
+node 9 has step 1
+node 10 has step 3
+node 11 has step -1
+node 12 has step 2
+node 13 has step 2
+node 14 has step 3
+=============================
+
+
+
+get path count from 4 to 14
+=============================
+node 4 appearance = 1
+node 9 appearance = 1
+node 13 appearance = 1
+node 14 appearance = 1
+=============================
+
+
+
+=============================
+start: 5 end: 9
+node 0 has step -1
+node 1 has step 1
+node 2 has step 1
+node 3 has step 2
+node 4 has step 1
+node 5 has step 0
+node 6 has step 1
+node 7 has step 1
+node 8 has step 1
+node 9 has step 2
+node 10 has step -1
+node 11 has step 2
+node 12 has step -1
+node 13 has step -1
+node 14 has step -1
+=============================
+
+
+
+get path count from 5 to 9
+=============================
+node 4 appearance = 1
+node 5 appearance = 2
+node 6 appearance = 1
+node 9 appearance = 1
+=============================
+
+
+
+=============================
+start: 5 end: 10
+node 0 has step -1
+node 1 has step 1
+node 2 has step 1
+node 3 has step 2
+node 4 has step 1
+node 5 has step 0
+node 6 has step 1
+node 7 has step 1
+node 8 has step 1
+node 9 has step 2
+node 10 has step 2
+node 11 has step 2
+node 12 has step -1
+node 13 has step -1
+node 14 has step -1
+=============================
+
+
+
+get path count from 5 to 10
+=============================
+node 5 appearance = 1
+node 7 appearance = 1
+node 10 appearance = 1
+=============================
+
+
+
+=============================
+start: 5 end: 11
+node 0 has step -1
+node 1 has step 1
+node 2 has step 1
+node 3 has step -1
+node 4 has step 1
+node 5 has step 0
+node 6 has step 1
+node 7 has step 1
+node 8 has step 1
+node 9 has step -1
+node 10 has step -1
+node 11 has step 2
+node 12 has step -1
+node 13 has step -1
+node 14 has step -1
+=============================
+
+
+
+get path count from 5 to 11
+=============================
+node 5 appearance = 1
+node 8 appearance = 1
+node 11 appearance = 1
+=============================
+
+
+
+=============================
+start: 5 end: 12
+node 0 has step 2
+node 1 has step 1
+node 2 has step 1
+node 3 has step 2
+node 4 has step 1
+node 5 has step 0
+node 6 has step 1
+node 7 has step 1
+node 8 has step 1
+node 9 has step 2
+node 10 has step 2
+node 11 has step 2
+node 12 has step 3
+node 13 has step 3
+node 14 has step 3
+=============================
+
+
+
+get path count from 5 to 12
+=============================
+node 4 appearance = 1
+node 5 appearance = 2
+node 6 appearance = 1
+node 9 appearance = 1
+node 12 appearance = 1
+=============================
+
+
+
+=============================
+start: 5 end: 13
+node 0 has step 2
+node 1 has step 1
+node 2 has step 1
+node 3 has step 2
+node 4 has step 1
+node 5 has step 0
+node 6 has step 1
+node 7 has step 1
+node 8 has step 1
+node 9 has step 2
+node 10 has step 2
+node 11 has step 2
+node 12 has step 3
+node 13 has step 3
+node 14 has step 3
+=============================
+
+
+
+get path count from 5 to 13
+=============================
+node 4 appearance = 1
+node 5 appearance = 3
+node 6 appearance = 1
+node 7 appearance = 1
+node 9 appearance = 1
+node 10 appearance = 1
+node 13 appearance = 1
+=============================
+
+
+
+=============================
+start: 5 end: 14
+node 0 has step 2
+node 1 has step 1
+node 2 has step 1
+node 3 has step 2
+node 4 has step 1
+node 5 has step 0
+node 6 has step 1
+node 7 has step 1
+node 8 has step 1
+node 9 has step 2
+node 10 has step 2
+node 11 has step 2
+node 12 has step -1
+node 13 has step -1
+node 14 has step 3
+=============================
+
+
+
+get path count from 5 to 14
+=============================
+node 5 appearance = 2
+node 7 appearance = 1
+node 8 appearance = 1
+node 10 appearance = 1
+node 11 appearance = 1
+node 14 appearance = 1
+=============================
+
+
+
+=============================
+start: 6 end: 8
+node 0 has step -1
+node 1 has step 2
+node 2 has step 2
+node 3 has step -1
+node 4 has step 2
+node 5 has step 1
+node 6 has step 0
+node 7 has step 1
+node 8 has step 2
+node 9 has step 1
+node 10 has step 2
+node 11 has step -1
+node 12 has step 2
+node 13 has step 2
+node 14 has step -1
+=============================
+
+
+
+get path count from 6 to 8
+=============================
+node 5 appearance = 1
+node 6 appearance = 1
+node 8 appearance = 1
+=============================
+
+
+
+=============================
+start: 6 end: 10
+node 0 has step -1
+node 1 has step -1
+node 2 has step -1
+node 3 has step -1
+node 4 has step 2
+node 5 has step 1
+node 6 has step 0
+node 7 has step 1
+node 8 has step -1
+node 9 has step 1
+node 10 has step 2
+node 11 has step -1
+node 12 has step 2
+node 13 has step 2
+node 14 has step -1
+=============================
+
+
+
+get path count from 6 to 10
+=============================
+node 6 appearance = 1
+node 7 appearance = 1
+node 10 appearance = 1
+=============================
+
+
+
+=============================
+start: 6 end: 11
+node 0 has step -1
+node 1 has step 2
+node 2 has step 2
+node 3 has step 3
+node 4 has step 2
+node 5 has step 1
+node 6 has step 0
+node 7 has step 1
+node 8 has step 2
+node 9 has step 1
+node 10 has step 2
+node 11 has step 3
+node 12 has step 2
+node 13 has step 2
+node 14 has step 3
+=============================
+
+
+
+get path count from 6 to 11
+=============================
+node 5 appearance = 1
+node 6 appearance = 2
+node 7 appearance = 1
+node 8 appearance = 1
+node 10 appearance = 1
+node 11 appearance = 1
+=============================
+
+
+
+=============================
+start: 6 end: 12
+node 0 has step -1
+node 1 has step -1
+node 2 has step -1
+node 3 has step -1
+node 4 has step 2
+node 5 has step 1
+node 6 has step 0
+node 7 has step 1
+node 8 has step -1
+node 9 has step 1
+node 10 has step -1
+node 11 has step -1
+node 12 has step 2
+node 13 has step 2
+node 14 has step -1
+=============================
+
+
+
+get path count from 6 to 12
+=============================
+node 6 appearance = 1
+node 9 appearance = 1
+node 12 appearance = 1
+=============================
+
+
+
+=============================
+start: 6 end: 13
+node 0 has step -1
+node 1 has step -1
+node 2 has step -1
+node 3 has step -1
+node 4 has step 2
+node 5 has step 1
+node 6 has step 0
+node 7 has step 1
+node 8 has step -1
+node 9 has step 1
+node 10 has step -1
+node 11 has step -1
+node 12 has step 2
+node 13 has step 2
+node 14 has step -1
+=============================
+
+
+
+get path count from 6 to 13
+=============================
+node 6 appearance = 1
+node 9 appearance = 1
+node 13 appearance = 1
+=============================
+
+
+
+=============================
+start: 6 end: 14
+node 0 has step -1
+node 1 has step 2
+node 2 has step 2
+node 3 has step -1
+node 4 has step 2
+node 5 has step 1
+node 6 has step 0
+node 7 has step 1
+node 8 has step 2
+node 9 has step 1
+node 10 has step 2
+node 11 has step -1
+node 12 has step 2
+node 13 has step 2
+node 14 has step 3
+=============================
+
+
+
+get path count from 6 to 14
+=============================
+node 6 appearance = 2
+node 7 appearance = 1
+node 9 appearance = 1
+node 10 appearance = 1
+node 13 appearance = 1
+node 14 appearance = 1
+=============================
+
+
+
+=============================
+start: 7 end: 8
+node 0 has step -1
+node 1 has step 2
+node 2 has step 2
+node 3 has step -1
+node 4 has step 2
+node 5 has step 1
+node 6 has step 1
+node 7 has step 0
+node 8 has step 2
+node 9 has step 2
+node 10 has step 1
+node 11 has step 2
+node 12 has step -1
+node 13 has step 2
+node 14 has step 2
+=============================
+
+
+
+get path count from 7 to 8
+=============================
+node 5 appearance = 1
+node 7 appearance = 1
+node 8 appearance = 1
+=============================
+
+
+
+=============================
+start: 7 end: 9
+node 0 has step -1
+node 1 has step -1
+node 2 has step -1
+node 3 has step -1
+node 4 has step -1
+node 5 has step 1
+node 6 has step 1
+node 7 has step 0
+node 8 has step -1
+node 9 has step 2
+node 10 has step 1
+node 11 has step -1
+node 12 has step -1
+node 13 has step -1
+node 14 has step -1
+=============================
+
+
+
+get path count from 7 to 9
+=============================
+node 6 appearance = 1
+node 7 appearance = 1
+node 9 appearance = 1
+=============================
+
+
+
+=============================
+start: 7 end: 11
+node 0 has step -1
+node 1 has step -1
+node 2 has step -1
+node 3 has step -1
+node 4 has step -1
+node 5 has step 1
+node 6 has step 1
+node 7 has step 0
+node 8 has step -1
+node 9 has step 2
+node 10 has step 1
+node 11 has step 2
+node 12 has step -1
+node 13 has step 2
+node 14 has step 2
+=============================
+
+
+
+get path count from 7 to 11
+=============================
+node 7 appearance = 1
+node 10 appearance = 1
+node 11 appearance = 1
+=============================
+
+
+
+=============================
+start: 7 end: 12
+node 0 has step -1
+node 1 has step 2
+node 2 has step 2
+node 3 has step -1
+node 4 has step 2
+node 5 has step 1
+node 6 has step 1
+node 7 has step 0
+node 8 has step 2
+node 9 has step 2
+node 10 has step 1
+node 11 has step 2
+node 12 has step 3
+node 13 has step 2
+node 14 has step 2
+=============================
+
+
+
+get path count from 7 to 12
+=============================
+node 6 appearance = 1
+node 7 appearance = 1
+node 9 appearance = 1
+node 12 appearance = 1
+=============================
+
+
+
+=============================
+start: 7 end: 13
+node 0 has step -1
+node 1 has step -1
+node 2 has step -1
+node 3 has step -1
+node 4 has step -1
+node 5 has step 1
+node 6 has step 1
+node 7 has step 0
+node 8 has step -1
+node 9 has step 2
+node 10 has step 1
+node 11 has step 2
+node 12 has step -1
+node 13 has step 2
+node 14 has step 2
+=============================
+
+
+
+get path count from 7 to 13
+=============================
+node 7 appearance = 1
+node 10 appearance = 1
+node 13 appearance = 1
+=============================
+
+
+
+=============================
+start: 7 end: 14
+node 0 has step -1
+node 1 has step -1
+node 2 has step -1
+node 3 has step -1
+node 4 has step -1
+node 5 has step 1
+node 6 has step 1
+node 7 has step 0
+node 8 has step -1
+node 9 has step 2
+node 10 has step 1
+node 11 has step 2
+node 12 has step -1
+node 13 has step 2
+node 14 has step 2
+=============================
+
+
+
+get path count from 7 to 14
+=============================
+node 7 appearance = 1
+node 10 appearance = 1
+node 14 appearance = 1
+=============================
+
+
+
+=============================
+start: 8 end: 9
+node 0 has step -1
+node 1 has step 2
+node 2 has step 2
+node 3 has step 3
+node 4 has step 2
+node 5 has step 1
+node 6 has step 2
+node 7 has step 2
+node 8 has step 0
+node 9 has step 3
+node 10 has step 2
+node 11 has step 1
+node 12 has step -1
+node 13 has step 3
+node 14 has step 2
+=============================
+
+
+
+get path count from 8 to 9
+=============================
+node 4 appearance = 1
+node 5 appearance = 2
+node 6 appearance = 1
+node 8 appearance = 2
+node 9 appearance = 1
+=============================
+
+
+
+=============================
+start: 8 end: 10
+node 0 has step -1
+node 1 has step -1
+node 2 has step -1
+node 3 has step -1
+node 4 has step -1
+node 5 has step 1
+node 6 has step -1
+node 7 has step -1
+node 8 has step 0
+node 9 has step -1
+node 10 has step 2
+node 11 has step 1
+node 12 has step -1
+node 13 has step -1
+node 14 has step 2
+=============================
+
+
+
+get path count from 8 to 10
+=============================
+node 8 appearance = 1
+node 10 appearance = 1
+node 11 appearance = 1
+=============================
+
+
+
+=============================
+start: 8 end: 12
+node 0 has step 3
+node 1 has step 2
+node 2 has step 2
+node 3 has step 3
+node 4 has step 2
+node 5 has step 1
+node 6 has step 2
+node 7 has step 2
+node 8 has step 0
+node 9 has step 3
+node 10 has step 2
+node 11 has step 1
+node 12 has step 4
+node 13 has step 3
+node 14 has step 2
+=============================
+
+
+
+get path count from 8 to 12
+=============================
+node 4 appearance = 1
+node 5 appearance = 2
+node 6 appearance = 1
+node 8 appearance = 2
+node 9 appearance = 1
+node 12 appearance = 1
+=============================
+
+
+
+=============================
+start: 8 end: 13
+node 0 has step -1
+node 1 has step 2
+node 2 has step 2
+node 3 has step -1
+node 4 has step 2
+node 5 has step 1
+node 6 has step 2
+node 7 has step 2
+node 8 has step 0
+node 9 has step -1
+node 10 has step 2
+node 11 has step 1
+node 12 has step -1
+node 13 has step 3
+node 14 has step 2
+=============================
+
+
+
+get path count from 8 to 13
+=============================
+node 8 appearance = 2
+node 10 appearance = 1
+node 11 appearance = 2
+node 13 appearance = 1
+node 14 appearance = 1
+=============================
+
+
+
+=============================
+start: 8 end: 14
+node 0 has step -1
+node 1 has step -1
+node 2 has step -1
+node 3 has step -1
+node 4 has step -1
+node 5 has step 1
+node 6 has step -1
+node 7 has step -1
+node 8 has step 0
+node 9 has step -1
+node 10 has step 2
+node 11 has step 1
+node 12 has step -1
+node 13 has step -1
+node 14 has step 2
+=============================
+
+
+
+get path count from 8 to 14
+=============================
+node 8 appearance = 1
+node 11 appearance = 1
+node 14 appearance = 1
+=============================
+
+
+
+=============================
+start: 9 end: 10
+node 0 has step -1
+node 1 has step -1
+node 2 has step -1
+node 3 has step -1
+node 4 has step 1
+node 5 has step -1
+node 6 has step 1
+node 7 has step -1
+node 8 has step -1
+node 9 has step 0
+node 10 has step 2
+node 11 has step -1
+node 12 has step 1
+node 13 has step 1
+node 14 has step 2
+=============================
+
+
+
+get path count from 9 to 10
+=============================
+node 9 appearance = 1
+node 10 appearance = 1
+node 13 appearance = 1
+=============================
+
+
+
+=============================
+start: 9 end: 11
+node 0 has step -1
+node 1 has step -1
+node 2 has step -1
+node 3 has step 2
+node 4 has step 1
+node 5 has step 2
+node 6 has step 1
+node 7 has step 2
+node 8 has step -1
+node 9 has step 0
+node 10 has step 2
+node 11 has step 3
+node 12 has step 1
+node 13 has step 1
+node 14 has step 2
+=============================
+
+
+
+get path count from 9 to 11
+=============================
+node 9 appearance = 2
+node 10 appearance = 1
+node 11 appearance = 1
+node 13 appearance = 2
+node 14 appearance = 1
+=============================
+
+
+
+=============================
+start: 9 end: 14
+node 0 has step -1
+node 1 has step -1
+node 2 has step -1
+node 3 has step -1
+node 4 has step 1
+node 5 has step -1
+node 6 has step 1
+node 7 has step -1
+node 8 has step -1
+node 9 has step 0
+node 10 has step 2
+node 11 has step -1
+node 12 has step 1
+node 13 has step 1
+node 14 has step 2
+=============================
+
+
+
+get path count from 9 to 14
+=============================
+node 9 appearance = 1
+node 13 appearance = 1
+node 14 appearance = 1
+=============================
+
+
+
+=============================
+start: 10 end: 12
+node 0 has step -1
+node 1 has step -1
+node 2 has step -1
+node 3 has step -1
+node 4 has step 3
+node 5 has step 2
+node 6 has step 2
+node 7 has step 1
+node 8 has step 2
+node 9 has step 2
+node 10 has step 0
+node 11 has step 1
+node 12 has step 3
+node 13 has step 1
+node 14 has step 1
+=============================
+
+
+
+get path count from 10 to 12
+=============================
+node 9 appearance = 1
+node 10 appearance = 1
+node 12 appearance = 1
+node 13 appearance = 1
+=============================
+
+
+
+=============================
+start: 11 end: 12
+node 0 has step -1
+node 1 has step 3
+node 2 has step 3
+node 3 has step -1
+node 4 has step 3
+node 5 has step 2
+node 6 has step 3
+node 7 has step 2
+node 8 has step 1
+node 9 has step 3
+node 10 has step 1
+node 11 has step 0
+node 12 has step 4
+node 13 has step 2
+node 14 has step 1
+=============================
+
+
+
+get path count from 11 to 12
+=============================
+node 9 appearance = 1
+node 10 appearance = 1
+node 11 appearance = 2
+node 12 appearance = 1
+node 13 appearance = 1
+node 14 appearance = 1
+=============================
+
+
+
+=============================
+start: 11 end: 13
+node 0 has step -1
+node 1 has step -1
+node 2 has step -1
+node 3 has step -1
+node 4 has step -1
+node 5 has step -1
+node 6 has step -1
+node 7 has step -1
+node 8 has step 1
+node 9 has step -1
+node 10 has step 1
+node 11 has step 0
+node 12 has step -1
+node 13 has step 2
+node 14 has step 1
+=============================
+
+
+
+get path count from 11 to 13
+=============================
+node 10 appearance = 1
+node 11 appearance = 2
+node 13 appearance = 1
+node 14 appearance = 1
+=============================
+
+
+
+=============================
+start: 12 end: 13
+node 0 has step -1
+node 1 has step -1
+node 2 has step -1
+node 3 has step -1
+node 4 has step 2
+node 5 has step -1
+node 6 has step 2
+node 7 has step -1
+node 8 has step -1
+node 9 has step 1
+node 10 has step -1
+node 11 has step -1
+node 12 has step 0
+node 13 has step 2
+node 14 has step -1
+=============================
+
+
+
+get path count from 12 to 13
+=============================
+node 9 appearance = 1
+node 12 appearance = 1
+node 13 appearance = 1
+=============================
+
+
+
+=============================
+start: 12 end: 14
+node 0 has step -1
+node 1 has step -1
+node 2 has step -1
+node 3 has step -1
+node 4 has step 2
+node 5 has step -1
+node 6 has step 2
+node 7 has step -1
+node 8 has step -1
+node 9 has step 1
+node 10 has step 3
+node 11 has step -1
+node 12 has step 0
+node 13 has step 2
+node 14 has step 3
+=============================
+
+
+
+get path count from 12 to 14
+=============================
+node 9 appearance = 1
+node 12 appearance = 1
+node 13 appearance = 1
+node 14 appearance = 1
+=============================
+
+
+
+0, 0, 13, 0, 19.3333, 47.5, 8.33333, 10.3333, 8.5, 18.8333, 9.33333, 5, 0, 9, 2, 
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+test is a Catch v2.4.0 host application.
+Run with -? for options
+
+-------------------------------------------------------------------------------
+Test Centrality
+-------------------------------------------------------------------------------
+tests/tests.cpp:81
+...............................................................................
+
+tests/tests.cpp:132: FAILED:
+  REQUIRE( same_arr )
+with expansion:
+  false
+
+===============================================================================
+test cases: 2 | 1 passed | 1 failed
+assertions: 7 | 6 passed | 1 failed
+
