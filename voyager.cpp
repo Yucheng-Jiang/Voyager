@@ -95,12 +95,15 @@ void Voyager::ReadRoute(std::string filePath) {
     }  
 }
 
-cs225::PNG* Voyager::DrawGraph(std::map<int, Airport*>& airport_dict, double* centrality) {
+void Voyager::DrawGraph(std::map<int, Airport*>& airport_dict, double* centrality, std::string inputFile, std::string outputFile) {
 
     //TODO: Write your code here
     std::vector<double> cArray;
     std::vector<double> tempArray;
-    cs225::PNG* sourcePNG = new cs225::PNG(width, height);
+    //cs225::PNG* sourcePNG = new cs225::PNG(width, height);
+    cs225::PNG inputimage;
+    inputimage.readFromFile(inputFile);
+    cs225::PNG outputimage(inputimage);
     for (unsigned i = 0; i < airport_dict.size(); i++) {
         cArray.push_back(centrality[i]);
         tempArray.push_back(centrality[i]);
@@ -113,35 +116,33 @@ cs225::PNG* Voyager::DrawGraph(std::map<int, Airport*>& airport_dict, double* ce
         int airportID = c.first;
         double lati = (airport_dict.find(airportID)->second)->lati_;
         double longi = (airport_dict.find(airportID)->second)->longi_;
-        int x = convertToX(*sourcePNG, lati, longi);
-        int y = convertToY(*sourcePNG, lati, longi);
+        int x = convertToX(inputimage, lati, longi);
+        int y = convertToY(inputimage, lati, longi);
         if (cArray[index] == max) {
             int length = 2;
             for (int i = x - 2; i < x + 2; x++) {
                 for (int j = y - 2; j < y + 2; y++) {
-                    sourcePNG->getPixel(i, j).h = 0;
-                    sourcePNG->getPixel(i, j).s = 1;
-                    sourcePNG->getPixel(i, j).l = 0.5;
-                    sourcePNG->getPixel(i, j).a = 1;
+                    inputimage.getPixel(i, j).h = 0;
+                    inputimage.getPixel(i, j).s = 1;
+                    inputimage.getPixel(i, j).l = 0.5;
+                    inputimage.getPixel(i, j).a = 1;
                 }
             }
         } else {
             for (int i = x - 2; i < x + 2; x++) {
                 for (int j = y - 2; j < y + 2; y++) {
-                    sourcePNG->getPixel(i, j).h = 255;
-                    sourcePNG->getPixel(i, j).s = 1;
-                    sourcePNG->getPixel(i, j).l = 0.5;
-                    sourcePNG->getPixel(i, j).a = 1;
+                    inputimage.getPixel(i, j).h = 255;
+                    inputimage.getPixel(i, j).s = 1;
+                    inputimage.getPixel(i, j).l = 0.5;
+                    inputimage.getPixel(i, j).a = 1;
                 }
             }
         }
-
         index+=1;
     }
-
-    return sourcePNG;
-    
+    outputimage.writeToFile(outputFile);
 }
+
 double* Voyager::centrality(std::map<int, std::unordered_set<int>*>& map) {
 
     int SIZE = map.size();

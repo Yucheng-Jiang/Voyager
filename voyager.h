@@ -98,7 +98,7 @@ class Voyager {
          * @param map adjacency matrix. 
          * @return pointer of the updated PNG
          */ 
-        cs225::PNG* Voyager::DrawGraph(std::map<int, Airport*>& airport_dict, double* centrality);
+        void Voyager::DrawGraph(std::map<int, Airport*>& airport_dict, double* centrality, std::string inputFile, std::string outputFile);
 
         /**
          * calculate betweeness centriality of each airport.
