@@ -95,12 +95,11 @@ void Voyager::ReadRoute(std::string filePath) {
     }  
 }
 
-void Voyager::DrawGraph(std::map<int, Airport*>& airport_dict, double* centrality, std::string inputFile, std::string outputFile) {
+void Voyager::DrawGraph(std::map<int, Airport*>& airport_dict, double* centrality, std::string inputFile, std::string outputFile, int topN) {
 
     //TODO: Write your code here
     std::vector<double> cArray;
     std::vector<double> tempArray;
-    //cs225::PNG* sourcePNG = new cs225::PNG(width, height);
     cs225::PNG inputimage;
     inputimage.readFromFile(inputFile);
     cs225::PNG outputimage(inputimage);
@@ -108,9 +107,10 @@ void Voyager::DrawGraph(std::map<int, Airport*>& airport_dict, double* centralit
         cArray.push_back(centrality[i]);
         tempArray.push_back(centrality[i]);
     }
-    std::sort(tempArray.begin(), tempArray.end());
-    double min = tempArray[0];
-    double max = tempArray[airport_dict.size()];
+    std::sort(tempArray.begin(), tempArray.end(), std::greater<double>());
+    double max = tempArray[0];
+    double min = tempArray[airport_dict.size()];
+    double topNAirport = tempArray[topN];
     int index = 0;
     for (auto& c : airport_dict) {
         int airportID = c.first;
@@ -118,7 +118,7 @@ void Voyager::DrawGraph(std::map<int, Airport*>& airport_dict, double* centralit
         double longi = (airport_dict.find(airportID)->second)->longi_;
         int x = convertToX(inputimage, lati, longi);
         int y = convertToY(inputimage, lati, longi);
-        if (cArray[index] == max) {
+        if (cArray[index] >= topNAirport) {
             int length = 2;
             for (int i = x - 2; i < x + 2; x++) {
                 for (int j = y - 2; j < y + 2; y++) {
