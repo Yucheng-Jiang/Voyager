@@ -95,10 +95,13 @@ class Voyager {
 
         /**
          * draw flight routes onto png
-         * @param map adjacency matrix. 
-         * @return pointer of the updated PNG
+         * @param airport_dict airport dictionary
+         * @param centrality  double array of centrality of each airport
+         * @param inputFile inputFile name worldMap.png
+         * @param outputFile outputFile name
          */ 
-        cs225::PNG* DrawGraph(std::map<int, Airport*>& airport_dict, double* centrality);
+
+        void Voyager::DrawGraph(std::map<int, Airport*>& airport_dict, double* centrality, std::string inputFile, std::string outputFile, int topN);
 
         /**
          * calculate betweeness centriality of each airport.
@@ -123,8 +126,7 @@ class Voyager {
         std::map<int, Airport*> airport_dict;   
         // adjacency map. key is the id of airport, value is unordered_set of all neighbor aiports
         std::map<int, std::unordered_set<int>*> map_adj; 
-        int width;
-        int height;
+
     private:
         /**
          * read airport info from dataset to airport_dict
@@ -140,7 +142,12 @@ class Voyager {
         void ReadRoute(std::string filePath);
 
         /**
-         * 
+         * convert longti and lati into 2D map
+         * @param png the 2D map
+         * @param lati latitude of the airport
+         * @param longi longtide of the airport
+         * @return the X coordinate of the airport on the 2D map
+         * @return the Y coordinate of the airport on the 2D map
          */
         int convertToX(cs225::PNG& png, double lati, double longi);
         int convertToY(cs225::PNG& png, double lati, double longi);
