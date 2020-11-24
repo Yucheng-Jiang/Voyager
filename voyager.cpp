@@ -6,6 +6,7 @@
 #include <vector>
 #include <cmath>
 #include <queue>
+#include <stack>
 #include <algorithm>
 
 #include "cs225/HSLAPixel.h"
@@ -152,116 +153,72 @@ void Voyager::DrawGraph(std::map<int, Airport*>& airport_dict, double* centralit
 double* Voyager::centrality(int SIZE, std::map<int, std::unordered_set<int>*>& map) {
 
     double* centrality = new double[SIZE]{0};
-    // iterate for each first and second vertex
-    for (int firstVertex = 0; firstVertex < SIZE; firstVertex++) {
-        for (int secondVertex = firstVertex + 1; secondVertex < SIZE; secondVertex++) {
-            // if first and second vertex is neighbor, skip
-            if (!map.count(firstVertex) || !map.count(secondVertex) || map[firstVertex]->count(secondVertex)) continue;
-            // get shortest path
-            int* stepCount = GetStepCount(SIZE, map, firstVertex, secondVertex);
-            if (!stepCount) continue;
-            // back traversal to find shortest path
-            int* pathCount = GetPathCount(SIZE, map, stepCount, firstVertex, secondVertex);
-            // update centrality
-            int totalPath = pathCount[firstVertex];
-            for (int i = 0; i < SIZE; i++) {
-                if (i == firstVertex || i == secondVertex || totalPath == 0) continue;
-                centrality[i] += (double) pathCount[i] / totalPath;
-            }
-            // delete step count array
-            delete[] stepCount;
-            delete[] pathCount;
-        }
-    }
-    
-    return centrality;
-}
+    int displayThreshold = 1;
+    for (int s = 0; s < SIZE; s++) {
+        int percent = (100 * (s + 1)) / SIZE ;
+		if (percent >= displayThreshold) {
+			std::cout << "\r" << "[" << std::string(percent / 5, '-') << ">" << std::string(100 / 5 - percent / 5, ' ') << "]  ";
+			std::cout << percent << "%";
+			std::cout.flush();
+			displayThreshold += 1;
+		}
 
-int* Voyager::GetStepCount(int SIZE, std::map<int, std::unordered_set<int>*>& map, int departureIndex, int destIndex) {
-   
-    // initialzie all steps to -1
-    int* stepCount = new int[SIZE];
-    std::fill_n(stepCount, SIZE, -1);
-    // set departure step = 0
-    stepCount[departureIndex] = 0;
-    std::queue<int> queue;
-    queue.push(departureIndex);
-    bool isfound = false;
-    // bfs mark steps from firstVertex to secondVertex
-    while (!queue.empty()) {
-        // if reach destination, break bfs
-        if (isfound) break;
-        // get first element in queue
-        int index = queue.front();
-        queue.pop();
-        // new step count
-        int step = stepCount[index] + 1;
-        // visit all neighbor node, if stepcount is not initialized or new step is smaller
-        // update step count
-        if (!map.count(index)) {
-            delete[] stepCount;
-            return nullptr;
-        }
-        std::unordered_set<int>* set = map[index];
-        for (std::unordered_set<int>::iterator it = set->begin(); it != set->end(); it++) {
-            if (*it == destIndex) isfound = true;
-            if (*it != departureIndex && (stepCount[*it] == -1 || stepCount[*it] > step)) {
-                stepCount[*it] = step;
-            }
-            queue.push(*it);
-        }
-    }
-    if (!isfound) delete[] stepCount;
-    return isfound ? stepCount : nullptr;
-}
+        std::stack<int> stack;
+        std::map<int, std::vector<int>> predecessor;
+        std::queue<int> queue;
+        double* delta = new double[SIZE]{0};
+        int* sigma = new int[SIZE]{0};
+        int* distance = new int[SIZE]{};
+        std::fill_n(distance, SIZE, -1);
+        sigma[s] = 1;
+        distance[s] = 0;
+        queue.push(s);
 
-int* Voyager::GetPathCount(int SIZE, std::map<int, std::unordered_set<int>*>& map, int* stepCount, int departureIndex, int destIndex) {
-    
-    int* pathCount = new int[SIZE]{0};
-    pathCount[destIndex] = 1;
-    std::map<int, std::vector<std::vector<int>>> parent;
-    parent[destIndex] = std::vector<std::vector<int>>{{destIndex}};
-    std::queue<int> queue;
-    queue.push(destIndex);
-    // find number of path
-    while (!queue.empty()) {
-        int index = queue.front();
-        queue.pop();
-        // next required step count
-        int step = stepCount[index] - 1;
-        // for all neighbors, find those steps matches with required step count
-        std::unordered_set<int>* set = map[index];
-        for (std::unordered_set<int>::iterator it = set->begin(); it != set->end(); it++) {
-            // copy all parent nodes from parents to self
-            if (stepCount[*it] == step) {
-                queue.push(*it);
-                if (parent.count(*it) == 0) {
-                    std::vector<std::vector<int>> vec;
-                    for (int i = 0; i < (int) parent[index].size(); i++) {
-                        std::vector<int> temp = parent[index][i];
-                        temp.push_back(*it);
-                        vec.push_back(temp);
-                    }
-                    parent[*it] = vec;
-                } else {
-                    for (int i = 0; i < (int) parent[index].size(); i++) {
-                        std::vector<int> temp = parent[index][i];
-                        temp.push_back(*it);
-                        parent[*it].push_back(temp);
+        while (!queue.empty()) {
+            int cur = queue.front();
+            queue.pop();
+            stack.push(cur);
+            if (!map.count(cur)) break;
+            for (int neighbor : *map[cur]) {
+                if (distance[neighbor] < 0) {
+                    queue.push(neighbor);
+                    distance[neighbor] = distance[cur] + 1;
+                }
+                if (distance[neighbor] == distance[cur] + 1) {
+                    sigma[neighbor] += sigma[cur];
+                    if (predecessor.count(neighbor) == 0) {
+                        std::vector<int> vec = {cur};
+                        predecessor[neighbor] = vec;
+                    } else {
+                        predecessor[neighbor].push_back(cur);
                     }
                 }
             }
         }
-    }
-    // count all shortest path
-    for (auto& vec : parent[departureIndex]) {
-        for (auto& i : vec) {
-            pathCount[i]++;
+
+        while (!stack.empty()) {
+            int cur = stack.top();
+            stack.pop();
+            if (predecessor.count(cur) == 0) break;
+            for (int pred : predecessor[cur]) {
+                delta[pred] += ((double) sigma[pred] / sigma[cur]) * (1.0 + delta[cur]);
+            }
+            if (cur != s) centrality[cur] += delta[cur];
         }
+
+        delete[] delta;
+        delete[] sigma;
+        delete[] distance;
     }
 
-    return pathCount;
+    for (int i = 0; i < SIZE; i++) {
+        centrality[i] /= 2;
+    }
+
+    return centrality;
 }
+
+
 
 int Voyager::convertToX(cs225::PNG png, double lati, double longi) {
     int x = std::fmod((png.width() * (180 + longi)/ 360), (png.width() + (png.width() / 2)));
