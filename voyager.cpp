@@ -126,19 +126,21 @@ void Voyager::DrawGraph(std::map<int, Airport*>& airport_dict, double* centralit
         if (cArray[index] >= topNAirport) {
             for (int i = x - length; i < x + length; x++) {
                 for (int j = y - length; j < y + length; y++) {
-                    outputimage.getPixel(i, j).h = 0;
-                    outputimage.getPixel(i, j).s = 1;
-                    outputimage.getPixel(i, j).l = 0.5;
-                    outputimage.getPixel(i, j).a = 1;
+                    cs225::HSLAPixel &pixel = inputimage.getPixel(i, j);
+                    pixel.h = 0;
+                    pixel.s = 1;
+                    pixel.l = 0.5;
+                    pixel.a = 1;
                 }
             }
         } else {
             for (int i = x - length; i < x + length; x++) {
                 for (int j = y - length; j < y + length; y++) {
-                    outputimage.getPixel(i, j).h = 255;
-                    outputimage.getPixel(i, j).s = 1;
-                    outputimage.getPixel(i, j).l = 0.5;
-                    outputimage.getPixel(i, j).a = 1;
+                    cs225::HSLAPixel &pixel = inputimage.getPixel(i, j);
+                    pixel.h = 255;
+                    pixel.s = 1;
+                    pixel.l = 0.5;
+                    pixel.a = 1;
                 }
             }
         }
