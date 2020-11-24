@@ -19,11 +19,17 @@
 2. TEST Betweeness Centrality
     - 1 Test basic graph centrality 1
     - 2 Test basic graph centrality 2
-    - 3 Test database with 5 busiest apt
+    - 3 Test database with most connected airport LHR
 3. TEST Visualization
     - 1 Test coordinate conversion
 
 ------------------ END ------------------*/
+
+struct pair_hash {
+    inline std::size_t operator()(const std::pair<int,int> & v) const {
+        return v.first*31+v.second;
+    }
+};
 
 TEST_CASE("Test Apt Init", "[apt-dict init][init][basic]") {
 
@@ -228,37 +234,17 @@ TEST_CASE("Test Centrality basic", "[centrality][basic]") {
 
 TEST_CASE("Test centrality large dataset", "[centrality][complex]") {
 
-    double THRESHOLD = 0.8;
-    // busiest connecting apt in the world DXB/ATL/HKG/LHR/LAX
-    //                                   2101/1383/2916/503/3286
+    // World's most connected airport LHR
     Voyager *voyager = new Voyager();
-    double *res = voyager->centrality((int) voyager->GetAptDict().size(), voyager->GetAdjMatrix());
+    int size = (int)voyager->GetAptDict().size();
+    double *res = voyager->centrality(size, voyager->GetAdjMatrix());
     
-    //The busiest airport centrality should be larger than most airports
-    double DXB = res[2101];
-    int rDXB = 0;
-    double ATL = res[1383];
-    int rATL = 0;
-    double HKG = res[2916];
-    int rHKG = 0;
-    double LHR = res[3286];
-    int rLHR = 0;
-
-    int size = sizeof(res) / sizeof(res[0]);
+    double LHR = res[502];
+    int larger = 0;
     for (int i = 0; i < size; i++) {
-        if (res[i] < DXB) rDXB++;
-        if (res[i] < ATL) rATL++;
-        if (res[i] < HKG) rHKG++;
-        if (res[i] < LHR) rLHR++;
+        if (res[i] > LHR) larger++;
     }
-    rDXB /= size;
-    rATL /= size;
-    rHKG /= size;
-    rLHR /= size;
-    REQUIRE(rDXB >= THRESHOLD);
-    REQUIRE(rATL >= THRESHOLD);
-    REQUIRE(rHKG >= THRESHOLD);
-    REQUIRE(rLHR >= THRESHOLD);
+    REQUIRE(larger < 20);
     delete voyager; voyager = nullptr;
 }
 
@@ -267,7 +253,7 @@ TEST_CASE("Test coordinate conversion", "[visualization][basic]") {
     Voyager *voyager = new Voyager("dataset/testapt.dat", "dataset/testroutes");
     cs225::PNG png;
     png.readFromFile("worldMap.png");
-    std::unordered_set<std::pair<int, int>> set;
+    std::unordered_set<std::pair<int, int>, pair_hash> set;
 
     bool distinct_coor = true;
     std::map<int, Voyager::Airport*> apt_dict = voyager->GetAptDict();
@@ -288,7 +274,7 @@ TEST_CASE("Test coordinate conversion 2", "[visualization][complex]") {
     Voyager *voyager = new Voyager();
     cs225::PNG png;
     png.readFromFile("worldMap.png");
-    std::unordered_set<std::pair<int, int>> set;
+    std::unordered_set<std::pair<int, int>, pair_hash> set;
 
     bool distinct_coor = true;
     std::map<int, Voyager::Airport*> apt_dict = voyager->GetAptDict();

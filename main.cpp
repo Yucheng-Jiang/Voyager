@@ -8,7 +8,6 @@
 
 int main(int argc, const char *argv[]) {
 
-    //TODO: Write your code HERE:
     Voyager* voyager = new Voyager();
     voyager->centrality((int) voyager->GetAptDict().size(), voyager->GetAdjMatrix());
     // std::cout << "Drawing "<< "worldMap.png" << std::endl;
