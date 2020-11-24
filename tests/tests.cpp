@@ -158,7 +158,7 @@ TEST_CASE("Test Centrality", "[centrality][basic]") {
     expected[id++] = 9.5;
     expected[id++] = 2;
 
-    double *res = voyager->centrality(adj_matrix);
+    double *res = voyager->centrality((int) adj_matrix.size(), adj_matrix);
     // Check result size
     REQUIRE(sizeof(expected) == sizeof(res));
     // Check elements
@@ -205,7 +205,7 @@ TEST_CASE("Test Centrality basic", "[centrality][basic]") {
     expected[id++] = 0; 
     expected[id++] = 0;
 
-    double *res = voyager->centrality(adj_matrix);
+    double *res = voyager->centrality((int) adj_matrix.size(), adj_matrix);
     // Check result size
     REQUIRE(sizeof(expected) == sizeof(res));
     // Check elements
@@ -232,9 +232,7 @@ TEST_CASE("Test centrality large dataset", "[centrality][complex]") {
     // busiest connecting apt in the world DXB/ATL/HKG/LHR/LAX
     //                                   2101/1383/2916/503/3286
     Voyager *voyager = new Voyager();
-    std::cout << voyager->GetAptDict().size() << std::endl;
-    std::cout << voyager->GetAdjMatrix().size() << std::endl;
-    double *res = voyager->centrality(voyager->GetAdjMatrix());
+    double *res = voyager->centrality((int) voyager->GetAptDict().size(), voyager->GetAdjMatrix());
     
     //The busiest airport centrality should be larger than most airports
     double DXB = res[2101];
@@ -267,6 +265,27 @@ TEST_CASE("Test centrality large dataset", "[centrality][complex]") {
 TEST_CASE("Test coordinate conversion", "[visualization][basic]") {
 
     Voyager *voyager = new Voyager("dataset/testapt.dat", "dataset/testroutes");
+    cs225::PNG png;
+    png.readFromFile("worldMap.png");
+    std::unordered_set<std::pair<int, int>> set;
+
+    bool distinct_coor = true;
+    std::map<int, Voyager::Airport*> apt_dict = voyager->GetAptDict();
+    for (auto elem : apt_dict) {
+        int x = voyager->convertToX(png, elem.second->lati_, elem.second->longi_);
+        int y = voyager->convertToY(png, elem.second->lati_, elem.second->longi_);
+        if (set.find(std::make_pair(x, y)) != set.end()) {
+            distinct_coor = false;
+            break;
+        }
+        else set.insert(std::make_pair(x, y));
+    }
+    REQUIRE(distinct_coor);
+    delete voyager;     voyager = nullptr;
+}
+
+TEST_CASE("Test coordinate conversion 2", "[visualization][complex]") {
+    Voyager *voyager = new Voyager();
     cs225::PNG png;
     png.readFromFile("worldMap.png");
     std::unordered_set<std::pair<int, int>> set;

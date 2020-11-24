@@ -114,10 +114,11 @@ class Voyager {
 
         /**
          * calculate betweeness centriality of each airport.
+         * @param SIZE total number of airport
          * @param map adjacency matrix.
          * @return array of int representing centrailiaty of each airport
          */ 
-        double* centrality(std::map<int, std::unordered_set<int>*>& map);
+        double* centrality(int SIZE, std::map<int, std::unordered_set<int>*>& map);
 
         /**
          * destructor. delete aiport dictionary and adjacency matrix.
@@ -145,8 +146,8 @@ class Voyager {
          * @return the X coordinate of the airport on the 2D map
          * @return the Y coordinate of the airport on the 2D map
          */
-        int convertToX(cs225::PNG& png, double lati, double longi);
-        int convertToY(cs225::PNG& png, double lati, double longi);
+        int convertToX(const cs225::PNG& png, double lati, double longi);
+        int convertToY(const cs225::PNG& png, double lati, double longi);
         
     private:
         // Airport dictionary using airport unique id as key and airport pointer as value.
@@ -167,24 +168,4 @@ class Voyager {
          * @param filepath string path the routes info file.
          */ 
         void ReadRoute(std::string filePath);
-
-        /**
-         * get minimum steps of each airport from departure airport. 
-         * if find destination airport immediately stop count.
-         * @param map adjacency map
-         * @param departureIndex id of departure index
-         * @param destIndex if od destination index
-         * @return array of int representing minimum steps from departure airport
-         */ 
-        int* GetStepCount(std::map<int, std::unordered_set<int>*>& map, int departureIndex, int destIndex);
-
-        /**
-         * calculate number of each airport appears in all shortest path from departure to destination airport
-         * @param map adjacency map
-         * @param stepCount minumum steps of each airport from departure airport
-         * @param departureIndex id of departure airport
-         * @param destIndex id of destination airport.
-         * @return array of int representing number of each airport appears in all shortest path from departure to dest airport.
-         */ 
-        int* GetPathCount(std::map<int, std::unordered_set<int>*>& map, int* stepCount, int departureIndex, int destIndex);
 };
