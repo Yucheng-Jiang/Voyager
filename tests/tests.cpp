@@ -156,7 +156,7 @@ TEST_CASE("Test Centrality", "[centrality][basic]") {
     expected[id++] = 9.5;
     expected[id++] = 2;
 
-    double *res = voyager->centrality(adj_matrix);
+    double *res = voyager->centrality((int) adj_matrix.size(), adj_matrix);
     // Check result size
     REQUIRE(sizeof(expected) == sizeof(res));
     // Check elements
@@ -203,7 +203,7 @@ TEST_CASE("Test Centrality basic", "[centrality][basic]") {
     expected[id++] = 0; 
     expected[id++] = 0;
 
-    double *res = voyager->centrality(adj_matrix);
+    double *res = voyager->centrality((int) adj_matrix.size(), adj_matrix);
     // Check result size
     REQUIRE(sizeof(expected) == sizeof(res));
     // Check elements
@@ -229,8 +229,6 @@ TEST_CASE("Test centrality large dataset", "[centrality][complex]") {
     // busiest connecting apt in the world DXB/ATL/HKG/LHR/LAX
     //                                   2101/1383/2916/503/3286
     Voyager *voyager = new Voyager();
-    std::cout << voyager->GetAptDict().size() << std::endl;
-    std::cout << voyager->GetAdjMatrix().size() << std::endl;
-    double *res = voyager->centrality(voyager->GetAdjMatrix());
+    //double *res = voyager->centrality(voyager->GetAptDict().size(), voyager->GetAdjMatrix());
     REQUIRE(true);
 }
