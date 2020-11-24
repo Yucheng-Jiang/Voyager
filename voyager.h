@@ -114,10 +114,11 @@ class Voyager {
 
         /**
          * calculate betweeness centriality of each airport.
+         * @param SIZE total number of airport
          * @param map adjacency matrix.
          * @return array of int representing centrailiaty of each airport
          */ 
-        double* centrality(std::map<int, std::unordered_set<int>*>& map);
+        double* centrality(int SIZE, std::map<int, std::unordered_set<int>*>& map);
 
         /**
          * destructor. delete aiport dictionary and adjacency matrix.
@@ -171,20 +172,22 @@ class Voyager {
         /**
          * get minimum steps of each airport from departure airport. 
          * if find destination airport immediately stop count.
+         * @param SIZE total number of airport
          * @param map adjacency map
          * @param departureIndex id of departure index
          * @param destIndex if od destination index
          * @return array of int representing minimum steps from departure airport
          */ 
-        int* GetStepCount(std::map<int, std::unordered_set<int>*>& map, int departureIndex, int destIndex);
+        int* GetStepCount(int SIZE, std::map<int, std::unordered_set<int>*>& map, int departureIndex, int destIndex);
 
         /**
          * calculate number of each airport appears in all shortest path from departure to destination airport
+         * @param SIZE total number of airport
          * @param map adjacency map
          * @param stepCount minumum steps of each airport from departure airport
          * @param departureIndex id of departure airport
          * @param destIndex id of destination airport.
          * @return array of int representing number of each airport appears in all shortest path from departure to dest airport.
          */ 
-        int* GetPathCount(std::map<int, std::unordered_set<int>*>& map, int* stepCount, int departureIndex, int destIndex);
+        int* GetPathCount(int SIZE, std::map<int, std::unordered_set<int>*>& map, int* stepCount, int departureIndex, int destIndex);
 };
