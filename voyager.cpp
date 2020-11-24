@@ -103,7 +103,6 @@ void Voyager::ReadRoute(std::string filePath) {
 
 void Voyager::DrawGraph(std::map<int, Airport*>& airport_dict, double* centrality, std::string inputFile, std::string outputFile, int topN) {
 
-    //TODO: Write your code here
     std::vector<double> cArray;
     std::vector<double> tempArray;
     cs225::PNG inputimage;

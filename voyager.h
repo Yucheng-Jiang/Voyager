@@ -135,6 +135,18 @@ class Voyager {
          * @return reference to the adjacency map
          */
         std::map<int, std::unordered_set<int>*>& GetAdjMatrix();
+
+        //public for testing purposes
+        /**
+         * convert longti and lati into 2D map
+         * @param png the 2D map
+         * @param lati latitude of the airport
+         * @param longi longtide of the airport
+         * @return the X coordinate of the airport on the 2D map
+         * @return the Y coordinate of the airport on the 2D map
+         */
+        int convertToX(cs225::PNG& png, double lati, double longi);
+        int convertToY(cs225::PNG& png, double lati, double longi);
         
     private:
         // Airport dictionary using airport unique id as key and airport pointer as value.
@@ -155,18 +167,6 @@ class Voyager {
          * @param filepath string path the routes info file.
          */ 
         void ReadRoute(std::string filePath);
-
-        /**
-         * convert longti and lati into 2D map
-         * @param png the 2D map
-         * @param lati latitude of the airport
-         * @param longi longtide of the airport
-         * @return the X coordinate of the airport on the 2D map
-         * @return the Y coordinate of the airport on the 2D map
-         */
-        int convertToX(cs225::PNG& png, double lati, double longi);
-        int convertToY(cs225::PNG& png, double lati, double longi);
-
 
         /**
          * get minimum steps of each airport from departure airport. 

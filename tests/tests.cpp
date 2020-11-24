@@ -20,6 +20,8 @@
     - 1 Test basic graph centrality 1
     - 2 Test basic graph centrality 2
     - 3 Test database with 5 busiest apt
+3. TEST Visualization
+    - 1 Test coordinate conversion
 
 ------------------ END ------------------*/
 
@@ -226,11 +228,60 @@ TEST_CASE("Test Centrality basic", "[centrality][basic]") {
 
 TEST_CASE("Test centrality large dataset", "[centrality][complex]") {
 
+    double THRESHOLD = 0.8;
     // busiest connecting apt in the world DXB/ATL/HKG/LHR/LAX
     //                                   2101/1383/2916/503/3286
     Voyager *voyager = new Voyager();
     std::cout << voyager->GetAptDict().size() << std::endl;
     std::cout << voyager->GetAdjMatrix().size() << std::endl;
     double *res = voyager->centrality(voyager->GetAdjMatrix());
-    REQUIRE(true);
+    
+    //The busiest airport centrality should be larger than most airports
+    double DXB = res[2101];
+    int rDXB = 0;
+    double ATL = res[1383];
+    int rATL = 0;
+    double HKG = res[2916];
+    int rHKG = 0;
+    double LHR = res[3286];
+    int rLHR = 0;
+
+    int size = sizeof(res) / sizeof(res[0]);
+    for (int i = 0; i < size; i++) {
+        if (res[i] < DXB) rDXB++;
+        if (res[i] < ATL) rATL++;
+        if (res[i] < HKG) rHKG++;
+        if (res[i] < LHR) rLHR++;
+    }
+    rDXB /= size;
+    rATL /= size;
+    rHKG /= size;
+    rLHR /= size;
+    REQUIRE(rDXB >= THRESHOLD);
+    REQUIRE(rATL >= THRESHOLD);
+    REQUIRE(rHKG >= THRESHOLD);
+    REQUIRE(rLHR >= THRESHOLD);
+    delete voyager; voyager = nullptr;
+}
+
+TEST_CASE("Test coordinate conversion", "[visualization][basic]") {
+
+    Voyager *voyager = new Voyager("dataset/testapt.dat", "dataset/testroutes");
+    cs225::PNG png;
+    png.readFromFile("worldMap.png");
+    std::unordered_set<std::pair<int, int>> set;
+
+    bool distinct_coor = true;
+    std::map<int, Voyager::Airport*> apt_dict = voyager->GetAptDict();
+    for (auto elem : apt_dict) {
+        int x = voyager->convertToX(png, elem.second->lati_, elem.second->longi_);
+        int y = voyager->convertToY(png, elem.second->lati_, elem.second->longi_);
+        if (set.find(std::make_pair(x, y)) != set.end()) {
+            distinct_coor = false;
+            break;
+        }
+        else set.insert(std::make_pair(x, y));
+    }
+    REQUIRE(distinct_coor);
+    delete voyager;     voyager = nullptr;
 }
