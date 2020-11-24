@@ -31,7 +31,7 @@ int main(int argc, const char *argv[]) {
     map.insert(std::make_pair(1, new std::unordered_set<int>({2})));
     map.insert(std::make_pair(2, new std::unordered_set<int>({0, 1, 3})));
     map.insert(std::make_pair(3, new std::unordered_set<int>({2})));
-    double * centrArray =voyager->centrality(map);
+    double * centrArray =voyager->centrality(map.size(), map);
 
     voyager->DrawGraph(airport_dict, centrArray, "worldMap.png", "outMap.png", 1);
     return 0;

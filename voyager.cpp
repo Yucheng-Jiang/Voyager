@@ -122,7 +122,7 @@ void Voyager::DrawGraph(std::map<int, Airport*>& airport_dict, double* centralit
         double longi = (airport_dict.find(airportID)->second)->longi_;
         int x = convertToX(inputimage, lati, longi);
         int y = convertToY(inputimage, lati, longi);
-        int length = 2;
+        int length = 10;
         if (cArray[index] >= topNAirport) {
             for (int i = x - length; i < x + length; x++) {
                 for (int j = y - length; j < y + length; y++) {
@@ -137,7 +137,7 @@ void Voyager::DrawGraph(std::map<int, Airport*>& airport_dict, double* centralit
             for (int i = x - length; i < x + length; x++) {
                 for (int j = y - length; j < y + length; y++) {
                     cs225::HSLAPixel &pixel = inputimage.getPixel(i, j);
-                    pixel.h = 255;
+                    pixel.h = 105;
                     pixel.s = 1;
                     pixel.l = 0.5;
                     pixel.a = 1;
@@ -263,12 +263,12 @@ int* Voyager::GetPathCount(int SIZE, std::map<int, std::unordered_set<int>*>& ma
     return pathCount;
 }
 
-int Voyager::convertToX(cs225::PNG& png, double lati, double longi) {
+int Voyager::convertToX(cs225::PNG png, double lati, double longi) {
     int x = std::fmod((png.width() * (180 + longi)/ 360), (png.width() + (png.width() / 2)));
     return x;
 }
 
-int Voyager::convertToY(cs225::PNG& png, double lati, double longi) {
+int Voyager::convertToY(cs225::PNG png, double lati, double longi) {
     double PI = 3.14159265359;
     double latRad = lati * PI / 180;
     double mapProjc = std::log(tan((PI / 4) + (latRad / 2)));

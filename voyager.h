@@ -165,8 +165,8 @@ class Voyager {
          * @return the X coordinate of the airport on the 2D map
          * @return the Y coordinate of the airport on the 2D map
          */
-        int convertToX(cs225::PNG& png, double lati, double longi);
-        int convertToY(cs225::PNG& png, double lati, double longi);
+        int convertToX(cs225::PNG png, double lati, double longi);
+        int convertToY(cs225::PNG png, double lati, double longi);
 
 
         /**
