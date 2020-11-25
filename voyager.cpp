@@ -102,13 +102,13 @@ void Voyager::ReadRoute(std::string filePath) {
     }  
 }
 
-void Voyager::DrawGraph(std::map<int, Airport*>& airport_dict, double* centrality, std::string inputFile, std::string outputFile, int topN) {
+cs225::PNG Voyager::DrawGraph(std::map<int, Airport*>& airport_dict, double* centrality, std::string inputFile, std::string outputFile, int topN) {
 
     std::vector<double> cArray;
     std::vector<double> tempArray;
     cs225::PNG inputimage;
     inputimage.readFromFile(inputFile);
-    cs225::PNG outputimage(inputimage);
+    cs225::PNG OutputImage(inputimage);
     for (unsigned i = 0; i < airport_dict.size(); i++) {
         cArray.push_back(centrality[i]);
         tempArray.push_back(centrality[i]);
@@ -146,7 +146,7 @@ void Voyager::DrawGraph(std::map<int, Airport*>& airport_dict, double* centralit
         }
         index+=1;
     }
-    outputimage.writeToFile(outputFile);
+    return OutputImage;
 }
 
 double* Voyager::centrality(int SIZE, std::map<int, std::unordered_set<int>*>& map) {

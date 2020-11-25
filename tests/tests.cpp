@@ -22,6 +22,7 @@
     - 3 Test database with most connected airport LHR
 3. TEST Visualization
     - 1 Test coordinate conversion
+    - 2 Test write to png successful
 
 ------------------ END ------------------*/
 
@@ -289,4 +290,14 @@ TEST_CASE("Test coordinate conversion 2", "[visualization][complex]") {
     }
     REQUIRE(distinct_coor);
     delete voyager;     voyager = nullptr;
+}
+
+TEST_CASE("Test draw graph", "[write][basic]") {
+    
+    Voyager *voyager = new Voyager();
+
+    cs225::PNG original;
+    original.readFromFile("worldMap.png");
+    cs225::PNG out = voyager->DrawGraph(voyager->GetAptDict(), voyager->centrality((int)voyager->GetAptDict().size(), voyager->GetAdjMatrix()), "worldMap.png", "outMap.png", 1);
+    REQUIRE(out != original);
 }
