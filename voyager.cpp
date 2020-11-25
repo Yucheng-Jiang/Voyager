@@ -114,37 +114,39 @@ void Voyager::DrawGraph(std::map<int, Airport*>& airport_dict, double* centralit
         tempArray.push_back(centrality[i]);
     }
     std::sort(tempArray.begin(), tempArray.end(), std::greater<double>());
-    double topNAirport = tempArray[topN];
-    int index = 0;
+    double topNAirport = tempArray[topN - 1];
+    unsigned index = -1;
     for (auto& c : airport_dict) {
         int airportID = c.first;
         double lati = (airport_dict.find(airportID)->second)->lati_;
         double longi = (airport_dict.find(airportID)->second)->longi_;
-        int x = convertToX(inputimage, lati, longi);
-        int y = convertToY(inputimage, lati, longi);
-        int length = 10;
-        if (cArray[index] >= topNAirport) {
+        int x = convertToX(inputimage,longi);
+        int y = convertToY(inputimage, lati);
+        int length = 20;
+        index+=1;
+        if (cArray[index] >= topNAirport && index < airport_dict.size()) {
             for (int i = x - length; i < x + length; x++) {
                 for (int j = y - length; j < y + length; y++) {
-                    cs225::HSLAPixel &pixel = inputimage.getPixel(i, j);
+                    cs225::HSLAPixel &pixel = outputimage.getPixel(i, j);
                     pixel.h = 0;
                     pixel.s = 1;
                     pixel.l = 0.5;
                     pixel.a = 1;
                 }
             }
-        } else {
+        } else if (cArray[index] < topNAirport && index < airport_dict.size()){
             for (int i = x - length; i < x + length; x++) {
                 for (int j = y - length; j < y + length; y++) {
-                    cs225::HSLAPixel &pixel = inputimage.getPixel(i, j);
+                    cs225::HSLAPixel &pixel = outputimage.getPixel(i, j);
                     pixel.h = 105;
                     pixel.s = 1;
                     pixel.l = 0.5;
                     pixel.a = 1;
                 }
             }
+        } else if (index >= airport_dict.size()) {
+            break;
         }
-        index+=1;
     }
     outputimage.writeToFile(outputFile);
 }
@@ -219,16 +221,16 @@ double* Voyager::centrality(int SIZE, std::map<int, std::unordered_set<int>*>& m
 
 
 
-int Voyager::convertToX(const cs225::PNG& png, double lati, double longi) {
-    int x = std::fmod((png.width() * (180 + longi)/ 360), (png.width() + (png.width() / 2)));
+double Voyager::convertToX(cs225::PNG png, double longi) {
+    double x = std::fmod((png.width()*(180+longi)/360), (png.width()+(png.width()/2)));
     return x;
 }
 
-int Voyager::convertToY(const cs225::PNG& png, double lati, double longi) {
+double Voyager::convertToY(cs225::PNG png, double lati) {
     double PI = 3.14159265359;
     double latRad = lati * PI / 180;
     double mapProjc = std::log(tan((PI / 4) + (latRad / 2)));
-    int y = (png.height() / 2) - (png.width() * mapProjc / (2 * PI));
+    double y = (png.height() / 2) - (png.width() * mapProjc / (2 * PI));
     return y;
 }
 

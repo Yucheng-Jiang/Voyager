@@ -146,8 +146,8 @@ class Voyager {
          * @return the X coordinate of the airport on the 2D map
          * @return the Y coordinate of the airport on the 2D map
          */
-        int convertToX(const cs225::PNG& png, double lati, double longi);
-        int convertToY(const cs225::PNG& png, double lati, double longi);
+        double convertToX(cs225::PNG png, double longi);
+        double convertToY(cs225::PNG png, double lati);
         
     private:
         // Airport dictionary using airport unique id as key and airport pointer as value.
