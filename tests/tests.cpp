@@ -271,6 +271,35 @@ TEST_CASE("Test coordinate conversion", "[visualization][basic]") {
     delete voyager;     voyager = nullptr;
 }
 
+TEST_CASE("Test specific at coor parsing", "[visualization][coordinate][basic]") {
+
+    Voyager *voyager = new Voyager();
+    std::map<int, Voyager::Airport*> apt_dict = voyager->GetAptDict();
+    cs225::PNG png;
+    png.readFromFile("worldMap.png");
+    Voyager::Airport *PEK = apt_dict.at(3364);
+    Voyager::Airport *CTU = apt_dict.at(3395);
+    //std::cout << PEK->IATA << std::endl;
+    //std::cout << CTU->IATA << std::endl;
+    REQUIRE(voyager->convertToX(png, CTU->longi_) < voyager->convertToX(png, PEK->longi_));
+    REQUIRE(voyager->convertToY(png, CTU->lati_) < voyager->convertToY(png, PEK->lati_));
+    delete voyager;     voyager = nullptr;
+
+}
+
+TEST_CASE("Test two near airport coor parsing", "[visualization][coordinate][complex]") {
+
+    Voyager *voyager = new Voyager();
+    std::map<int, Voyager::Airport*> apt_dict = voyager->GetAptDict();
+    cs225::PNG png;
+    png.readFromFile("worldMap.png");
+    Voyager::Airport *HGH = apt_dict.at(3386);
+    Voyager::Airport *PVG = apt_dict.at(3406);
+    REQUIRE(voyager->convertToX(png, HGH->longi_) < voyager->convertToX(png, PVG->longi_));
+    REQUIRE(voyager->convertToY(png, HGH->lati_) < voyager->convertToY(png, PVG->lati_));
+    delete voyager;     voyager = nullptr;
+}
+
 TEST_CASE("Test coordinate conversion 2", "[visualization][complex]") {
     Voyager *voyager = new Voyager();
     cs225::PNG png;
