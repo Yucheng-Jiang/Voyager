@@ -151,6 +151,7 @@ void Voyager::DrawGraph(std::map<int, Airport*>& airport_dict, double* centralit
     outputimage.writeToFile(outputFile);
 }
 
+
 double* Voyager::centrality(int SIZE, std::map<int, std::unordered_set<int>*>& map) {
 
     double* centrality = new double[SIZE]{0};
