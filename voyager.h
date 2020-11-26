@@ -110,7 +110,7 @@ class Voyager {
          * @param outputFile outputFile name
          */ 
 
-        void DrawGraph(std::map<int, Airport*>& airport_dict, double* centrality, std::string inputFile, std::string outputFile, int topN);
+        void DrawGraph(std::map<int, Airport*>& airport_dict, double* centrality, std::string inputFile, std::string outputFile);
 
         /**
          * calculate betweeness centriality of each airport.
@@ -118,7 +118,7 @@ class Voyager {
          * @param map adjacency matrix.
          * @return array of int representing centrailiaty of each airport
          */ 
-        double* centrality(int SIZE, std::map<int, std::unordered_set<int>*>& map);
+        double* CalculateCentrality(int SIZE, std::map<int, std::unordered_set<int>*>& map);
 
         /**
          * destructor. delete aiport dictionary and adjacency matrix.
