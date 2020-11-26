@@ -105,17 +105,17 @@ void Voyager::ReadRoute(std::string filePath) {
 void Voyager::DrawGraph(std::map<int, Airport*>& airport_dict, double* centrality, std::string inputFile, std::string outputFile) {
 
     std::cout << "\n\nGenerating image...\n";
+    std::cout << "\033[32m" << "Image loading impleted." << "\033[39m" << "\n";
     
     cs225::PNG inputimage;
     inputimage.readFromFile(inputFile);
     cs225::PNG outputimage(inputimage);
      // initialize constant
     double MIN_HUE = 0;
-    double MAX_HUE = 270;
+    double MAX_HUE = 260;
     int IMAGE_WIDTH = inputimage.width();
     int IMAGE_HEIGHT = inputimage.height();
     double MAX_DISTANCE = std::sqrt(IMAGE_WIDTH * IMAGE_HEIGHT) / 100;
-
     // find max centrality
     double max_centrality = 0;
     for (int i = 0; i < (int) airport_dict.size(); i++) {
@@ -157,8 +157,8 @@ void Voyager::DrawGraph(std::map<int, Airport*>& airport_dict, double* centralit
             if (curr_x < 0 || curr_y < 0 || curr_x >= IMAGE_WIDTH || curr_y >= IMAGE_HEIGHT) continue;
             //std::cout << "trying to access (" << curr_x << ", " << curr_y << ") with limit (" << IMAGE_WIDTH << ", " << IMAGE_HEIGHT << ")\n";
             visited.insert(currPoint);
-            double curr_hue = base_hue + ((curr_x - base_x) * (curr_x - base_x) + (curr_y - base_y) * (curr_y - base_y)) 
-                                        / (MAX_DISTANCE * MAX_DISTANCE) * MAX_HUE;
+            double curr_hue = base_hue + std::sqrt(((curr_x - base_x) * (curr_x - base_x) + (curr_y - base_y) * (curr_y - base_y)) 
+                                        / (MAX_DISTANCE * MAX_DISTANCE)) * MAX_HUE;
             // if distance too far, skip
             if (curr_hue > MAX_HUE) continue;
             // update color
@@ -176,11 +176,14 @@ void Voyager::DrawGraph(std::map<int, Airport*>& airport_dict, double* centralit
         }
     }
     outputimage.writeToFile(outputFile);
+    std::cout << "\n" << "\033[32m" << "Image Gereration Complete" << "\033[39m" << "\n";
+    std::cout << "=================================\n";
 }
 
 
 double* Voyager::CalculateCentrality(int SIZE, std::map<int, std::unordered_set<int>*>& map) {
 
+    std::cout << "\n=================================\n";
     std::cout << "Calculating centrality...\n";
     double* centrality = new double[SIZE]{0};
     int displayThreshold = 1;
@@ -244,7 +247,8 @@ double* Voyager::CalculateCentrality(int SIZE, std::map<int, std::unordered_set<
     for (int i = 0; i < SIZE; i++) {
         centrality[i] /= 2;
     }
-
+    // print out progress
+    std::cout << "\n" << "\033[32m" << "Calculation Finished" << "\033[39m" << "\n";
     return centrality;
 }
 
