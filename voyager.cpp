@@ -139,8 +139,8 @@ void Voyager::DrawGraph(std::map<int, Airport*>& airport_dict, double* centralit
         int curr_index = curr_airport.second->index;
         if (centrality[curr_index] == 0) continue;
         // get base pixel location
-        int base_x = convertToX(inputimage, curr_airport.second->longi_);
-        int base_y = convertToY(inputimage, curr_airport.second->lati_);
+        int base_x = ConvertToX(inputimage, curr_airport.second->longi_);
+        int base_y = ConvertToY(inputimage, curr_airport.second->lati_);
         // normalize airport centrality and get basic hue
         double base_hue = (1 - std::sqrt(centrality[curr_index] / max_centrality)) * MAX_HUE;
         std::queue<int> queue;
@@ -254,12 +254,12 @@ double* Voyager::CalculateCentrality(int SIZE, std::map<int, std::unordered_set<
 
 
 
-double Voyager::convertToX(cs225::PNG png, double longi) {
+double Voyager::ConvertToX(cs225::PNG png, double longi) {
     double x = std::fmod((png.width()*(180+longi)/360), (png.width()+(png.width()/2)));
     return x;
 }
 
-double Voyager::convertToY(cs225::PNG png, double lati) {
+double Voyager::ConvertToY(cs225::PNG png, double lati) {
     double PI = 3.14159265359;
     double latRad = lati * PI / 180;
     double mapProjc = std::log(tan((PI / 4) + (latRad / 2)));

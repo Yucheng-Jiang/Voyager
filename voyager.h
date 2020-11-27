@@ -103,7 +103,7 @@ class Voyager {
         Voyager(std::string AptPath, std::string RoutePath);
 
         /**
-         * draw flight routes onto png
+         * Draw flight routes onto png
          * @param airport_dict airport dictionary
          * @param centrality  double array of centrality of each airport
          * @param inputFile inputFile name worldMap.png
@@ -113,7 +113,7 @@ class Voyager {
         void DrawGraph(std::map<int, Airport*>& airport_dict, double* centrality, std::string inputFile, std::string outputFile);
 
         /**
-         * calculate betweeness centriality of each airport.
+         * Calculate betweeness centriality of each airport.
          * @param SIZE total number of airport
          * @param map adjacency matrix.
          * @return array of int representing centrailiaty of each airport
@@ -126,28 +126,28 @@ class Voyager {
         ~Voyager();
 
         /**
-         * airport dictionary getter
+         * Airport dictionary getter
          * @return reference of the airport dictionary
          */ 
         std::map<int, Airport*>& GetAptDict();
 
         /**
-         * adjacency map getter
+         * Adjacency map getter
          * @return reference to the adjacency map
          */
         std::map<int, std::unordered_set<int>*>& GetAdjMatrix();
 
         //public for testing purposes
         /**
-         * convert longti and lati into 2D map
+         * Ronvert longti and lati into 2D map.
          * @param png the 2D map
          * @param lati latitude of the airport
          * @param longi longtide of the airport
          * @return the X coordinate of the airport on the 2D map
          * @return the Y coordinate of the airport on the 2D map
          */
-        double convertToX(cs225::PNG png, double longi);
-        double convertToY(cs225::PNG png, double lati);
+        double ConvertToX(cs225::PNG png, double longi);
+        double ConvertToY(cs225::PNG png, double lati);
         
     private:
         // Airport dictionary using airport unique id as key and airport pointer as value.
@@ -157,14 +157,14 @@ class Voyager {
 
     private:
         /**
-         * read airport info from dataset to airport_dict
+         * Read airport info from dataset to airport_dict.
          * initialize adjacency matrix based on number of airports.
          * @param filepath string path the airport info file.
          */ 
         void ReadAirport(std::string filePath);
 
         /**
-         * update adjacency matrix based on routes.
+         * Update adjacency matrix based on routes.
          * @param filepath string path the routes info file.
          */ 
         void ReadRoute(std::string filePath);

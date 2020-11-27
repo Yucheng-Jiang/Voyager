@@ -21,8 +21,9 @@
     - 2 Test basic graph centrality 2
     - 3 Test database with most connected airport LHR
 3. TEST Visualization
-    - 1 Test coordinate conversion
-    - 2 Test write to png successful
+    - 1 Test random airport coordinate conversion
+    - 2 Test two near airport coordinate conversion
+    - 3 Test write to png successful
 
 ------------------ END ------------------*/
 
@@ -92,7 +93,7 @@ TEST_CASE("Test Apt Init", "[apt-dict init][init][basic]") {
 
 TEST_CASE("Test adj-matrix init", "[routes init][init][basic]") {
 
-    Voyager *voyager = new Voyager("dataset/testapt.dat", "dataset/testroutes");
+    Voyager *voyager = new Voyager("dataset/testapt.dat", "dataset/testroutes.dat");
     Voyager::Airport* HGH = new Voyager::Airport("Hangzhou Xiaoshan International Airport", "HGH", 30.22949982, 120.4339981, 1);
     Voyager::Airport* CTU = new Voyager::Airport("Chengdu Shuangliu International Airport", "CTU", 30.57850075, 103.9469986, 4);
     Voyager::Airport* PVG = new Voyager::Airport("Shanghai Pudong International Airport", "PVG", 31.14340019,121.8050003, 2);
@@ -165,7 +166,7 @@ TEST_CASE("Test Centrality", "[centrality][basic]") {
     expected[id++] = 9.5;
     expected[id++] = 2;
 
-    double *res = voyager->centrality((int) adj_matrix.size(), adj_matrix);
+    double *res = voyager->CalculateCentrality((int) adj_matrix.size(), adj_matrix);
     // Check result size
     REQUIRE(sizeof(expected) == sizeof(res));
     // Check elements
@@ -212,7 +213,7 @@ TEST_CASE("Test Centrality basic", "[centrality][basic]") {
     expected[id++] = 0; 
     expected[id++] = 0;
 
-    double *res = voyager->centrality((int) adj_matrix.size(), adj_matrix);
+    double *res = voyager->CalculateCentrality((int) adj_matrix.size(), adj_matrix);
     // Check result size
     REQUIRE(sizeof(expected) == sizeof(res));
     // Check elements
@@ -238,7 +239,7 @@ TEST_CASE("Test centrality large dataset", "[centrality][complex]") {
     // World's most connected airport LHR
     Voyager *voyager = new Voyager();
     int size = (int)voyager->GetAptDict().size();
-    double *res = voyager->centrality(size, voyager->GetAdjMatrix());
+    double *res = voyager->CalculateCentrality(size, voyager->GetAdjMatrix());
     
     double LHR = res[502];
     int larger = 0;
@@ -251,7 +252,7 @@ TEST_CASE("Test centrality large dataset", "[centrality][complex]") {
 
 TEST_CASE("Test coordinate conversion", "[visualization][basic]") {
 
-    Voyager *voyager = new Voyager("dataset/testapt.dat", "dataset/testroutes");
+    Voyager *voyager = new Voyager("dataset/testapt.dat", "dataset/testroutes.dat");
     cs225::PNG png;
     png.readFromFile("worldMap.png");
     std::unordered_set<std::pair<int, int>, pair_hash> set;
@@ -259,8 +260,8 @@ TEST_CASE("Test coordinate conversion", "[visualization][basic]") {
     bool distinct_coor = true;
     std::map<int, Voyager::Airport*> apt_dict = voyager->GetAptDict();
     for (auto elem : apt_dict) {
-        int x = voyager->convertToX(png, elem.second->longi_);
-        int y = voyager->convertToY(png, elem.second->lati_);
+        int x = voyager->ConvertToX(png, elem.second->longi_);
+        int y = voyager->ConvertToY(png, elem.second->lati_);
         if (set.find(std::make_pair(x, y)) != set.end()) {
             distinct_coor = false;
             break;
@@ -279,10 +280,8 @@ TEST_CASE("Test specific at coor parsing", "[visualization][coordinate][basic]")
     png.readFromFile("worldMap.png");
     Voyager::Airport *PEK = apt_dict.at(3364);
     Voyager::Airport *CTU = apt_dict.at(3395);
-    //std::cout << PEK->IATA << std::endl;
-    //std::cout << CTU->IATA << std::endl;
-    REQUIRE(voyager->convertToX(png, CTU->longi_) < voyager->convertToX(png, PEK->longi_));
-    REQUIRE(voyager->convertToY(png, CTU->lati_) < voyager->convertToY(png, PEK->lati_));
+    REQUIRE(voyager->ConvertToX(png, CTU->longi_) < voyager->ConvertToX(png, PEK->longi_));
+    REQUIRE(voyager->ConvertToY(png, CTU->lati_) > voyager->ConvertToY(png, PEK->lati_));
     delete voyager;     voyager = nullptr;
 
 }
@@ -295,38 +294,34 @@ TEST_CASE("Test two near airport coor parsing", "[visualization][coordinate][com
     png.readFromFile("worldMap.png");
     Voyager::Airport *HGH = apt_dict.at(3386);
     Voyager::Airport *PVG = apt_dict.at(3406);
-    REQUIRE(voyager->convertToX(png, HGH->longi_) < voyager->convertToX(png, PVG->longi_));
-    REQUIRE(voyager->convertToY(png, HGH->lati_) < voyager->convertToY(png, PVG->lati_));
+    REQUIRE(voyager->ConvertToX(png, HGH->longi_) < voyager->ConvertToX(png, PVG->longi_));
+    REQUIRE(voyager->ConvertToY(png, HGH->lati_) > voyager->ConvertToY(png, PVG->lati_));
     delete voyager;     voyager = nullptr;
 }
 
-TEST_CASE("Test coordinate conversion 2", "[visualization][complex]") {
-    Voyager *voyager = new Voyager();
-    cs225::PNG png;
-    png.readFromFile("worldMap.png");
-    std::unordered_set<std::pair<int, int>, pair_hash> set;
-
-    bool distinct_coor = true;
-    std::map<int, Voyager::Airport*> apt_dict = voyager->GetAptDict();
-    for (auto elem : apt_dict) {
-        int x = voyager->convertToX(png, elem.second->longi_);
-        int y = voyager->convertToY(png, elem.second->lati_);
-        if (set.find(std::make_pair(x, y)) != set.end()) {
-            distinct_coor = false;
-            break;
-        }
-        else set.insert(std::make_pair(x, y));
-    }
-    REQUIRE(distinct_coor);
-    delete voyager;     voyager = nullptr;
-}
-
-// TEST_CASE("Test draw graph", "[write][basic]") {
+TEST_CASE("Test draw graph", "[visualization][basic]") {
     
-//     Voyager *voyager = new Voyager();
+    Voyager *voyager = new Voyager();
+    cs225::PNG original;
+    original.readFromFile("worldMap.png");
+    voyager->DrawGraph(voyager->GetAptDict(), voyager->CalculateCentrality(
+        voyager->GetAptDict().size(), voyager->GetAdjMatrix()), "worldMap.png", "outMap.png");
+    cs225::PNG out;
+    out.readFromFile("outMap.png");
+    REQUIRE(out != original);
+    delete voyager; voyager = nullptr;
+}
 
-//     cs225::PNG original;
-//     original.readFromFile("worldMap.png");
-//     cs225::PNG out = voyager->DrawGraph(voyager->GetAptDict(), voyager->centrality((int)voyager->GetAptDict().size(), voyager->GetAdjMatrix()), "worldMap.png", "outMap.png", 1);
-//     REQUIRE(out != original);
-// }
+TEST_CASE("Test result graph hue", "[visualization][complex]") {
+    Voyager *voyager = new Voyager();
+    voyager->DrawGraph(voyager->GetAptDict(), voyager->CalculateCentrality(
+        voyager->GetAptDict().size(), voyager->GetAdjMatrix()), "worldMap.png", "outMap.png");
+    cs225::PNG out;
+    out.readFromFile("outMap.png");
+    std::map<int, Voyager::Airport*> apt_dict = voyager->GetAptDict();
+    Voyager::Airport *PEK = apt_dict.at(3364);
+    Voyager::Airport *HGH = apt_dict.at(3386);
+    std::pair<int, int> cHGH(voyager->ConvertToX(out, HGH->longi_), voyager->ConvertToY(out, HGH->lati_));
+    std::pair<int, int> cPEK(voyager->ConvertToX(out, PEK->longi_), voyager->ConvertToY(out, PEK->lati_));
+    REQUIRE(out.getPixel(cPEK.first, cPEK.second).h < out.getPixel(cHGH.first, cHGH.second).h);
+}
