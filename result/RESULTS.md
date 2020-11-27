@@ -33,7 +33,25 @@ The second part is to present centrality onto world map as **heatmap**. This can
 
 
 
-We also write **test case** to ensure the accuracy of every function. We seprately test airport database size, airport read accuracy, adjacency matrix, centrality and coordinate conversion.
+### Testing Strategy
+
+1. Test Initialization 
+   1. Test read airport database with correct size
+   2. Test first/last/random airport read correctly
+   3. Test Adjacency matrix is set up correctly.
+   4. (Samll testing database used dir: ../dataset/test..*dat)
+2. Test betweeness Centrality
+   1. Test basic graph centrality 1
+   2. Test basic graph centrality 2
+   3. Test database with most connected/busiest airport
+3. Test Visualization
+   1. Test random airport coordinate conversion
+   2. Test two near airport coordinate conversion
+   3. Test write to png successful
+   4. Test result graph hue with correct contrast
+Testing groups:
+[init] [centrality] [visualization] [coordinate] [basic] [complex]
+
 
 
 
