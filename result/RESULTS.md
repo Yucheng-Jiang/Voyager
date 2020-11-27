@@ -39,7 +39,7 @@ The second part is to present centrality onto world map as **heatmap**. This can
    1. Test read airport database with correct size
    2. Test first/last/random airport read correctly
    3. Test Adjacency matrix is set up correctly.
-   4. (Samll testing database used dir: ../dataset/test..*dat)
+   4. (Small testing database used dir: ../dataset/test..*dat)
 2. Test betweeness Centrality
    1. Test basic graph centrality 1
    2. Test basic graph centrality 2

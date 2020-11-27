@@ -34,7 +34,6 @@ Voyager::~Voyager() {
 }
 
 void Voyager::ReadAirport(std::string filePath) {
-
     std::ifstream infile(filePath);
     string line;
     int count = 0;
@@ -69,10 +68,9 @@ void Voyager::ReadAirport(std::string filePath) {
 }
 
 void Voyager::ReadRoute(std::string filePath) {
-
     std::ifstream infile(filePath);
     string line;
-    // data format: id, name, IATA, lat, long
+    // departure id, destination id
     if (infile.is_open()) {
         while (getline(infile, line)) {
             std::vector<string> vec;
@@ -103,16 +101,16 @@ void Voyager::ReadRoute(std::string filePath) {
 }
 
 void Voyager::DrawGraph(std::map<int, Airport*>& airport_dict, double* centrality, std::string inputFile, std::string outputFile) {
-
+    // print progress
     std::cout << "\n\nGenerating image...\n";
-    std::cout << "\033[32m" << "Image loading impleted." << "\033[39m" << "\n";
-    
+    std::cout << "\033[32m" << "Image loading completed." << "\033[39m" << "\n";
+    // initialize file
     cs225::PNG inputimage;
     inputimage.readFromFile(inputFile);
     cs225::PNG outputimage(inputimage);
      // initialize constant
     double MIN_HUE = 0;
-    double MAX_HUE = 260;
+    double MAX_HUE = 270;
     int IMAGE_WIDTH = inputimage.width();
     int IMAGE_HEIGHT = inputimage.height();
     double MAX_DISTANCE = std::sqrt(IMAGE_WIDTH * IMAGE_HEIGHT) / 100;
@@ -121,7 +119,7 @@ void Voyager::DrawGraph(std::map<int, Airport*>& airport_dict, double* centralit
     for (int i = 0; i < (int) airport_dict.size(); i++) {
         if (centrality[i] > max_centrality) max_centrality = centrality[i];
     }
-
+    // printing progress variable
     int displayThreshold = 1;
     int count = 0;
     std::unordered_set<int> drawHistory;
@@ -143,6 +141,7 @@ void Voyager::DrawGraph(std::map<int, Airport*>& airport_dict, double* centralit
         int base_y = ConvertToY(inputimage, curr_airport.second->lati_);
         // normalize airport centrality and get basic hue
         double base_hue = (1 - std::sqrt(centrality[curr_index] / max_centrality)) * MAX_HUE;
+        // bfs add heat map color to png
         std::queue<int> queue;
         std::unordered_set<int> visited;
         queue.push(base_x + base_y * IMAGE_WIDTH);
@@ -155,10 +154,9 @@ void Voyager::DrawGraph(std::map<int, Airport*>& airport_dict, double* centralit
             //if already visited or out of bounds, skip
             if (visited.count(currPoint) != 0) continue;
             if (curr_x < 0 || curr_y < 0 || curr_x >= IMAGE_WIDTH || curr_y >= IMAGE_HEIGHT) continue;
-            //std::cout << "trying to access (" << curr_x << ", " << curr_y << ") with limit (" << IMAGE_WIDTH << ", " << IMAGE_HEIGHT << ")\n";
             visited.insert(currPoint);
-            double curr_hue = base_hue + std::sqrt(((curr_x - base_x) * (curr_x - base_x) + (curr_y - base_y) * (curr_y - base_y)) 
-                                        / (MAX_DISTANCE * MAX_DISTANCE)) * MAX_HUE;
+            double curr_hue = base_hue + ((curr_x - base_x) * (curr_x - base_x) + (curr_y - base_y) * (curr_y - base_y)) 
+                                        / (MAX_DISTANCE * MAX_DISTANCE) * MAX_HUE;
             // if distance too far, skip
             if (curr_hue > MAX_HUE) continue;
             // update color
