@@ -102,8 +102,7 @@ void Voyager::ReadRoute(std::string filePath) {
 
 void Voyager::DrawGraph(std::map<int, Airport*>& airport_dict, double* centrality, std::string inputFile, std::string outputFile) {
     // print progress
-    std::cout << "\n\nGenerating image...\n";
-    std::cout << "\033[32m" << "Image loading completed." << "\033[39m" << "\n";
+    std::cout << "\nGenerating image...\n";
     // initialize file
     cs225::PNG inputimage;
     inputimage.readFromFile(inputFile);
@@ -137,8 +136,8 @@ void Voyager::DrawGraph(std::map<int, Airport*>& airport_dict, double* centralit
         int curr_index = curr_airport.second->index;
         if (centrality[curr_index] == 0) continue;
         // get base pixel location
-        int base_x = ConvertToX(inputimage, curr_airport.second->longi_);
-        int base_y = ConvertToY(inputimage, curr_airport.second->lati_);
+        int base_x = ConvertToX(IMAGE_WIDTH, IMAGE_HEIGHT, curr_airport.second->longi_);
+        int base_y = ConvertToY(IMAGE_WIDTH, IMAGE_HEIGHT, curr_airport.second->lati_);
         // normalize airport centrality and get basic hue
         double base_hue = (1 - std::sqrt(centrality[curr_index] / max_centrality)) * MAX_HUE;
         // bfs add heat map color to png
@@ -173,8 +172,9 @@ void Voyager::DrawGraph(std::map<int, Airport*>& airport_dict, double* centralit
             if (curr_y - 1 >= 0) queue.push(currPoint - IMAGE_WIDTH);
         }
     }
+    std::cout << "\nWriting image data to file...\n";
     outputimage.writeToFile(outputFile);
-    std::cout << "\n" << "\033[32m" << "Image Gereration Complete" << "\033[39m" << "\n";
+    std::cout << "\033[32m" << "Image drawing completed." << "\033[39m" << "\n";
     std::cout << "=================================\n";
 }
 
@@ -246,22 +246,22 @@ double* Voyager::CalculateCentrality(int SIZE, std::map<int, std::unordered_set<
         centrality[i] /= 2;
     }
     // print out progress
-    std::cout << "\n" << "\033[32m" << "Calculation Finished" << "\033[39m" << "\n";
+    std::cout << "\n" << "\033[32m" << "Calculation Finished." << "\033[39m" << "\n";
     return centrality;
 }
 
 
 
-double Voyager::ConvertToX(cs225::PNG png, double longi) {
-    double x = std::fmod((png.width()*(180+longi)/360), (png.width()+(png.width()/2)));
+double Voyager::ConvertToX(int width, int height, double longi) {
+    double x = std::fmod(width * (180 + longi) / 360, (width + (width / 2)));
     return x;
 }
 
-double Voyager::ConvertToY(cs225::PNG png, double lati) {
+double Voyager::ConvertToY(int width, int height, double lati) {
     double PI = 3.14159265359;
     double latRad = lati * PI / 180;
     double mapProjc = std::log(tan((PI / 4) + (latRad / 2)));
-    double y = (png.height() / 2) - (png.width() * mapProjc / (2 * PI));
+    double y = (height / 2) - (width * mapProjc / (2 * PI));
     return y;
 }
 
