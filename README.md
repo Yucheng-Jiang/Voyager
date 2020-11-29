@@ -7,7 +7,6 @@
 This is UIUC CS225 course final project aims to build heatmap visualization of worldwide airports based on their importance (calculated by betweenness centrality). Check the result [here](result/RESULTS.md). 
 
 
-
 ## Contributors
 
 listed in alphabetically order
@@ -41,5 +40,9 @@ listed in alphabetically order
   | input file address  | "worldMap.png" |                                                          |
   | output file address | "outMap.png"   | `.png`, `.jpg`, `.gif`, and `.tiff` files also supported |
 
-  
 
+
+  ## Document files
+
+  - [Project goals](documents/GOALS.md)
+  - [development.md]((documents/DEVELOPMENT.md))

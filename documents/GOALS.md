@@ -2,7 +2,7 @@
 
 ### Summary
 
-In this final project, the goal is aim at finding all the possible flight routes from airport of departure to destination. All the possible flight routes will be mapped on the world map and be sorted based on the betweenness centrality.
+In this final project, the goal is aim at finding all the possible flight routes from airport of departure to destination. Heatmap visualization of worldwide airports based on the betweenness centrality.
 
 ### Dataset
 

@@ -21,5 +21,6 @@
 ### Week 2 (Nov 24 - Nov 30)
 
 - Largely improve betweenness centrality algorithm based on [Brandes algorithm](https://web.archive.org/web/20171013152036/http://algo.uni-konstanz.de/publications/b-fabc-01.pdf)
-
 - Add additional test cases for betweenness centrality
+- Largely improve image drawing efficiency
+- update Readme file
