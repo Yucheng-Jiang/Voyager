@@ -88,6 +88,7 @@ void Animation::write(const std::string& filename) {
 
     // Combine frames
     system(("convert frames/" + name + "*.png " + filename).c_str());
+    system("exec rm -r frames/*");
 
     // To .mp4
     //system(("ffmpeg -f 1 -i frames/" + name + "%02d.png -vcodec libx264 -r 30 -pix_fmt yuv420p " + filename + ".mp4").c_str());
