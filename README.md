@@ -9,7 +9,7 @@ This is UIUC CS225 course final project aims to build heatmap visualization of w
 
 ## Contributors
 
-listed in alphabetically order
+listed in alphabetical order
 
 **Jessica Wang** (NetID: ziyu4)
 
@@ -40,6 +40,10 @@ listed in alphabetically order
   | input file address  | "worldMap.png" |                                                          |
   | output file address | "outMap.png"   | `.png`, `.jpg`, `.gif`, and `.tiff` files also supported |
 
+### Run tests
+- `module load llvm/6.0.1` optional
+- `make test`
+- `./test`
 
 
 ## Document files
