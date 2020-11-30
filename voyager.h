@@ -121,6 +121,19 @@ class Voyager {
         double* CalculateCentrality(int SIZE, std::map<int, std::unordered_set<int>*>& map);
 
         /**
+         * Draw flight routes onto png
+         * @param airport_dict airport dictionary
+         * @param centrality  double array of centrality of each airport
+         * @param inputFile inputFile name worldMap.png
+         * @param outputFile outputFile name
+         * @param isAnimation whether generate animation gif
+         * @param FRAME_COUNT frame count const of gif
+         */ 
+
+        void DrawAnimation(std::map<int, Airport*>& airport_dict, double* centrality, 
+                                std::string inputFile, std::string outputFile, bool isAnimation, int FRAME_COUNT);
+
+        /**
          * destructor. delete aiport dictionary and adjacency matrix.
          */ 
         ~Voyager();

@@ -9,6 +9,7 @@
 #include <stack>
 #include <algorithm>
 
+#include "Animation.h"
 #include "cs225/HSLAPixel.h"
 #include "cs225/PNG.h"
 
@@ -101,6 +102,11 @@ void Voyager::ReadRoute(std::string filePath) {
 }
 
 void Voyager::DrawGraph(std::map<int, Airport*>& airport_dict, double* centrality, std::string inputFile, std::string outputFile) {
+    DrawAnimation(airport_dict, centrality, inputFile, outputFile, false, 0);
+}
+
+void Voyager::DrawAnimation(std::map<int, Airport*>& airport_dict, double* centrality, 
+                                std::string inputFile, std::string outputFile, bool isAnimate, int FRAME_COUNT) {
     // print progress
     std::cout << "\nGenerating image...\n";
     // initialize file
@@ -122,6 +128,10 @@ void Voyager::DrawGraph(std::map<int, Airport*>& airport_dict, double* centralit
     int displayThreshold = 1;
     int count = 0;
     std::unordered_set<int> drawHistory;
+    // gif animation
+    Animation animation;
+    int FRAME_INTERVAL = FRAME_COUNT;
+    animation.addFrame(outputimage);
     for (auto& curr_airport : airport_dict) {
         // print progress
         int percent = (100 * (count + 1)) / (int) airport_dict.size();
@@ -152,9 +162,9 @@ void Voyager::DrawGraph(std::map<int, Airport*>& airport_dict, double* centralit
             int curr_y = currPoint / IMAGE_WIDTH;
             //if already visited or out of bounds, skip
             if (visited.count(currPoint) != 0) continue;
-            if (curr_x < 0 || curr_y < 0 || curr_x >= IMAGE_WIDTH || curr_y >= IMAGE_HEIGHT) continue;
+            // mark current point as visitied and calculate current pixel's hue
             visited.insert(currPoint);
-            double curr_hue = base_hue + ((curr_x - base_x) * (curr_x - base_x) + (curr_y - base_y) * (curr_y - base_y)) 
+            double curr_hue = base_hue +  ((curr_x - base_x) * (curr_x - base_x) + (curr_y - base_y) * (curr_y - base_y)) 
                                         / (MAX_DISTANCE * MAX_DISTANCE) * MAX_HUE;
             // if distance too far, skip
             if (curr_hue > MAX_HUE) continue;
@@ -163,16 +173,30 @@ void Voyager::DrawGraph(std::map<int, Airport*>& airport_dict, double* centralit
             if (drawHistory.count(currPoint) != 0 && pixel.h < curr_hue) continue;
             drawHistory.insert(currPoint);
             pixel.h = curr_hue;
-            pixel.s = 0.5;
-            pixel.l = 0.5;
+            pixel.s = 0.7;
+            pixel.l = (MAX_HUE - curr_hue) / MAX_HUE;
+            if (pixel.l > 0.7) pixel.l = 0.7;
+            if (pixel.l < 0.3) pixel.l = 0.3;
             pixel.a = 1;
+            if (isAnimate) {
+                if (FRAME_INTERVAL == 0) {
+                    FRAME_INTERVAL = FRAME_COUNT;
+                    animation.addFrame(outputimage);
+                } else {
+                    FRAME_INTERVAL--;
+                }
+            }
+            // add neighbors to queue
             if (curr_x + 1 < IMAGE_WIDTH) queue.push(currPoint + 1);
             if (curr_x - 1 >= 0) queue.push(currPoint - 1);
             if (curr_y + 1 < IMAGE_HEIGHT) queue.push(currPoint + IMAGE_WIDTH);
             if (curr_y - 1 >= 0) queue.push(currPoint - IMAGE_WIDTH);
         }
     }
+    if (isAnimate) animation.addFrame(outputimage);
+    // write image to file and priint status
     std::cout << "\nWriting image data to file...\n";
+    if (isAnimate) animation.write("outMap.gif");
     outputimage.writeToFile(outputFile);
     std::cout << "\033[32m" << "Image drawing completed." << "\033[39m" << "\n";
     std::cout << "=================================\n";
@@ -180,12 +204,13 @@ void Voyager::DrawGraph(std::map<int, Airport*>& airport_dict, double* centralit
 
 
 double* Voyager::CalculateCentrality(int SIZE, std::map<int, std::unordered_set<int>*>& map) {
-
+    // print status
     std::cout << "\n=================================\n";
     std::cout << "Calculating centrality...\n";
     double* centrality = new double[SIZE]{0};
     int displayThreshold = 1;
     for (int s = 0; s < SIZE; s++) {
+        // print status
         int percent = (100 * (s + 1)) / SIZE ;
 		if (percent >= displayThreshold) {
 			std::cout << "\r" << "[" << std::string(percent / 5, '-') << ">" << std::string(100 / 5 - percent / 5, ' ') << "]  ";
@@ -193,9 +218,11 @@ double* Voyager::CalculateCentrality(int SIZE, std::map<int, std::unordered_set<
 			std::cout.flush();
 			displayThreshold += 1;
 		}
-
+        // stack to perform dfs pair-dependency accumulation
         std::stack<int> stack;
+        // record parents of each node
         std::map<int, std::vector<int>> predecessor;
+        // bfs to find shortest path
         std::queue<int> queue;
         double* delta = new double[SIZE]{0};
         int* sigma = new int[SIZE]{0};
@@ -204,7 +231,7 @@ double* Voyager::CalculateCentrality(int SIZE, std::map<int, std::unordered_set<
         sigma[s] = 1;
         distance[s] = 0;
         queue.push(s);
-
+        // bfs to find shortest path
         while (!queue.empty()) {
             int cur = queue.front();
             queue.pop();
@@ -226,7 +253,7 @@ double* Voyager::CalculateCentrality(int SIZE, std::map<int, std::unordered_set<
                 }
             }
         }
-
+        // dfs to do pair-dependency accmulation
         while (!stack.empty()) {
             int cur = stack.top();
             stack.pop();

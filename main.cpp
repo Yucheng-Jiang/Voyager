@@ -7,7 +7,7 @@ int main(int argc, const char *argv[]) {
     std::string inputFile = "";
     std::string outputFile = "";
     if (argc < 3) {
-        inputFile = "worldMap.png";
+        inputFile = "image/worldMap-min.png";
         outputFile = "outMap.png";
     } else {
         inputFile = argv[1];

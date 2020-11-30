@@ -1,7 +1,7 @@
 EXE = voyager 
 TEST = test
 EXE_OBJ = main.o
-OBJS = voyager.o main.o
+OBJS = voyager.o main.o Animation.o
 
 # CXX = clang++
 # CXXFLAGS = $(CS225) -std=c++1y -stdlib=libc++ -c -g -O0 -Wall -Wextra -pedantic

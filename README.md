@@ -42,7 +42,7 @@ listed in alphabetically order
 
 
 
-  ## Document files
+## Document files
 
   - [Project goals](documents/GOALS.md)
   - [development.md]((documents/DEVELOPMENT.md))
