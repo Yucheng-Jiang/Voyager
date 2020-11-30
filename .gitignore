@@ -1,0 +1,7 @@
+.obj
+*.o
+*.d
+frames/*
+outMap.png
+outMap.gif
+
