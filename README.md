@@ -9,7 +9,7 @@ This is UIUC CS225 course final project aims to build heatmap visualization of w
 
 ## Contributors
 
-listed in alphabetically order
+listed in alphabetical order
 
 **Jessica Wang** (NetID: ziyu4)
 
