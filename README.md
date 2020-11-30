@@ -40,6 +40,10 @@ listed in alphabetical order
   | input file address  | "worldMap.png" |                                                          |
   | output file address | "outMap.png"   | `.png`, `.jpg`, `.gif`, and `.tiff` files also supported |
 
+### Run tests
+- `module load llvm/6.0.1` optional
+- `make test`
+- `./test`
 
 
   ## Document files
