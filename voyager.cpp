@@ -263,7 +263,6 @@ double* Voyager::CalculateCentrality(int SIZE, std::map<int, std::unordered_set<
             }
             if (cur != s) centrality[cur] += delta[cur];
         }
-
         delete[] delta;
         delete[] sigma;
         delete[] distance;

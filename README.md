@@ -31,7 +31,7 @@ listed in alphabetical order
 
 - The executable created is called `voyager`. You can run it as follows:
 
-  `./voyager [input file addr] [output file addr]`
+  `./voyager [input file addr] [output file addr] [frame count]`
 
   Parameters in `[square brackets]` are optional. Below are the defaults:
 
@@ -39,6 +39,7 @@ listed in alphabetical order
   | ------------------- | -------------- | -------------------------------------------------------- |
   | input file address  | "worldMap.png" |                                                          |
   | output file address | "outMap.png"   | `.png`, `.jpg`, `.gif`, and `.tiff` files also supported |
+  | frame count         | 0              | frame count of gif animation                             |
 
 ### Run tests
 - `module load llvm/6.0.1` optional
