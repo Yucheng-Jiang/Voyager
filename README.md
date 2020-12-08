@@ -50,4 +50,4 @@ listed in alphabetical order
 ## Document files
 
   - [Project goals](documents/GOALS.md)
-  - [development.md]((documents/DEVELOPMENT.md))
+  - [development md](documents/DEVELOPMENT.md)

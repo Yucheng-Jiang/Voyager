@@ -26,7 +26,7 @@
 - update Readme file
 
 
-### week 3 (Dec 1 -  Dec 8)
+### Week 3 (Dec 1 -  Dec 8)
 - Add gif animation output functionality
 - Add unit tests for centrality calculation and png output
 - Write additional comments and documentation for functions
